@@ -30,7 +30,6 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-
     protected $uri = '/users/authenticate';
 
     /**
@@ -46,24 +45,28 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
     private $webHookUrl;
 
     /**
-     * @desc: check if wrapper is correctly configurated
-     *
-     * @return boolean
+     * @inheritdoc
      */
     public function check()
     {
-        if ($this->credentials == null) {
+        if (empty($this->credentials)) {
             return false;
         }
 
-        return true;
+        return parent::check();
     }
 
+    /**
+     * @return string
+     */
     public function getSecureKey()
     {
         return $this->secureKey;
     }
 
+    /**
+     * @param string $secureKey
+     */
     public function setSecureKey($secureKey)
     {
         $this->secureKey = $secureKey;

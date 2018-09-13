@@ -31,26 +31,25 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperSetShippingProduct extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-
     protected $uri = '/products/';
-
 
     protected $method = 'PUT';
 
     /**
-     * @desc: check if wrapper is correctly configurated
-     *
-     * @return boolean
+     * @inheritdoc
      */
     public function check()
     {
-        if ($this->id == null) {
+        if (empty($this->id)) {
             return false;
         }
 
-        return true;
+        return parent::check();
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getUri()
     {
         return $this->uri.$this->id;

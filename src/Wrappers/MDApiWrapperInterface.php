@@ -29,43 +29,32 @@ namespace MapaDirectSDK\Wrappers;
  */
 interface MDApiWrapperInterface
 {
-
     /**
      * @desc: set credential
      * @param: string $url
      *
-     * @return this
+     * @return $this
      */
     public function setCredentials($credentials);
 
     /**
      * @desc: get credential
-     * @param: string $url
      *
-     * @return this
+     * @return string
      */
     public function getCredentials();
 
     /**
-     * @desc: set API url (prod or qa)
-     * @param: string $url
+     * @desc: get API url (prod or qa)
      *
-     * @return this
+     * @return string
      */
     public function getUri();
 
     /**
-     * @desc: set request method
-     * @param: string $method
-     *
-     * @return this
-     */
-    public function setMethod($method);
-
-    /**
      * @desc: get request method
      *
-     * @return this
+     * @return string
      */
     public function getMethod();
 
@@ -73,21 +62,43 @@ interface MDApiWrapperInterface
      * @desc: set request body
      * @param: string $json
      *
-     * @return this
+     * @return $this
      */
     public function setInput($json);
 
     /**
      * @desc: get request body
      *
-     * @return this
+     * @return string
      */
     public function getInput();
 
     /**
-     * @desc: check if wrapper is correctly configurated
+     * @desc: check if wrapper is correctly configured
      *
-     * @return this
+     * @return bool
      */
     public function check();
+
+    /**
+     * @param string $token
+     * @return $this
+     */
+    public function setToken($token);
+
+    /**
+     * @return string
+     */
+    public function getToken();
+
+    /**
+     * @return string
+     */
+    public function getSiret();
+
+    /**
+     * @param string $siret
+     * @return $this
+     */
+    public function setSiret($siret);
 }

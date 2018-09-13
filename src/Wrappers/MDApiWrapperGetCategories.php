@@ -30,17 +30,5 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperGetCategories extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-
     protected $uri = '/catalog/categories/tree';
-
-
-    /**
-     * @desc: check if wrapper is correctly configurated
-     *
-     * @return boolean
-     */
-    public function check()
-    {
-        return true;
-    }
 }

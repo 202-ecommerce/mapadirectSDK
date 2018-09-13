@@ -35,6 +35,10 @@ class MDApiResponse
 
     private $content;
 
+    /**
+     * MDApiResponse constructor.
+     * @param string $status
+     */
     public function __construct($status)
     {
         $this->status = $status;
@@ -44,6 +48,9 @@ class MDApiResponse
 
     /**
      * @desc: get status
+     *
+     * @param string $status
+     * @return $this
      */
     public function setStatus($status)
     {
@@ -55,19 +62,17 @@ class MDApiResponse
     /**
      * @desc: is success
      *
-     * @return: boolean
+     * @return bool
      */
     public function isSuccess()
     {
-        if ($this->status == 'success') {
-            return true;
-        }
-
-        return false;
+        return $this->status === 'success';
     }
 
     /**
      * @desc: get status
+     *
+     * @return string
      */
     public function getStatus()
     {
@@ -76,6 +81,8 @@ class MDApiResponse
 
     /**
      * @desc: add error
+     * @param string $error
+     * @return $this
      */
     public function addError($error)
     {
@@ -86,6 +93,8 @@ class MDApiResponse
 
     /**
      * @desc: get errors
+     *
+     * @return array
      */
     public function getErrors()
     {
@@ -94,6 +103,9 @@ class MDApiResponse
 
     /**
      * @desc: set content
+     *
+     * @param string $content
+     * @return $this
      */
     public function setContent($content)
     {
@@ -104,6 +116,8 @@ class MDApiResponse
 
     /**
      * @desc: get content
+     *
+     * @return string
      */
     public function getContent()
     {

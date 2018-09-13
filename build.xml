@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Mapa Direct" default="build" basedir=".">
+<project name="Mapadirect SDK" default="build" basedir=".">
     <property name="build-dir" value="${basedir}/build" />
     <property name="src-dir" value="${basedir}/src" />
 
@@ -128,7 +128,7 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="vendor/bin/simple-phpunit" failonerror="true">
+        <exec executable="vendor/bin/phpunit" failonerror="true">
             <arg value="-c" />
             <arg value="${basedir}/phpunit.xml.dist" />
             <arg value="--coverage-html" />

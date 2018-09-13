@@ -30,21 +30,18 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-
     protected $uri = '/products';
 
     protected $method = 'POST';
 
     /**
-     * @desc: check if wrapper is correctly configurated
-     *
-     * @return boolean
+     * @inheritdoc
      */
     public function check()
     {
         if (empty($this->input)) {
             return false;
         }
-        return true;
+        return parent::check();
     }
 }

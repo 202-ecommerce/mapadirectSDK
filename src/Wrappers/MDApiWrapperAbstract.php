@@ -46,10 +46,8 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     protected $siret;
 
     /**
-     * @desc: set credential
-     * @param: string $url
-     *
-     * @return this
+     * @param string $credentials
+     * @return $this
      */
     public function setCredentials($credentials)
     {
@@ -59,10 +57,7 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     }
 
     /**
-     * @desc: get credential
-     * @param: string $url
-     *
-     * @return this
+     * @return string
      */
     public function getCredentials()
     {
@@ -70,10 +65,7 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     }
 
     /**
-     * @desc: set API url (prod or qa)
-     * @param: string $url
-     *
-     * @return this
+     * @return string
      */
     public function getUri()
     {
@@ -81,10 +73,8 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     }
 
     /**
-     * @desc: set request tsId
-     * @param: string $tsId
-     *
-     * @return this
+     * @param string $id
+     * @return $this
      */
     public function setId($id)
     {
@@ -94,22 +84,7 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     }
 
     /**
-     * @desc: set request method
-     * @param: string $method
-     *
-     * @return this
-     */
-    public function setMethod($method)
-    {
-        $this->method = $method;
-
-        return $this;
-    }
-
-    /**
-     * @desc: get request method
-     *
-     * @return this
+     * @return string
      */
     public function getMethod()
     {
@@ -117,10 +92,11 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     }
 
     /**
-     * @desc: set request body
-     * @param: string $json
+     * Set request body
      *
-     * @return this
+     * @param string $json
+     *
+     * @return $this
      */
     public function setInput($json)
     {
@@ -132,7 +108,7 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     /**
      * @desc: get request body
      *
-     * @return this
+     * @return string
      */
     public function getInput()
     {
@@ -142,21 +118,25 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     /**
      * @desc: check if wrapper is correctly configurated
      *
-     * @return this
+     * @return bool
      */
     public function check()
     {
-        return false;
+        if (empty($this->siret)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * @desc: check if wrapper is correctly configured
-     * @param: $response MDApiResponse Response object
-     * @param: $data     string        json response
+     * @param MDApiResponse $response
+     * @param string $data json response
      *
-     * @return this
+     * @return $this
      */
-    public function parseReponse(MDApiResponse $response, $data)
+    public function parseResponse(MDApiResponse $response, $data)
     {
         $data = json_decode($data, true);
         $response->setContent($data);
@@ -164,23 +144,41 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
         return $this;
     }
 
+    /**
+     * @param string $token
+     * @return $this
+     */
     public function setToken($token)
     {
-        return $this->token = $token;
+        $this->token = $token;
+
+        return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getToken()
     {
         return $this->token;
     }
 
+    /**
+     * @return string
+     */
     public function getSiret()
     {
         return $this->siret;
     }
 
+    /**
+     * @param string $siret
+     * @return $this
+     */
     public function setSiret($siret)
     {
         $this->siret = $siret;
+
+        return $this;
     }
 }

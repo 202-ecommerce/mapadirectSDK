@@ -30,18 +30,5 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperGetTaxes extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-
     protected $uri = '/taxes';
-
-
-    /**
-     * @desc: check if wrapper is correctly configurated
-     *
-     * @return boolean
-     */
-    public function check()
-    {
-
-        return true;
-    }
 }

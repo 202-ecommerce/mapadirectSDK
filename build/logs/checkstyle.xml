@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="3.3.1">
+<file name="/home/clotaire/www/mapadirectSDK/src/MDApiClient.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperGetProduct.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperSetShippingProduct.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperDeleteProduct.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperGetTaxes.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperGetCategories.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperAddProduct.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperAuth.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperAbstract.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+<file name="/home/clotaire/www/mapadirectSDK/src/Wrappers/MDApiWrapperUpdateProduct.php">
+ <error line="25" column="1" severity="error" message="There must be one blank line after the namespace declaration" source="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+</file>
+</checkstyle>
+
