@@ -163,22 +163,7 @@ class MDApiClient
             curl_setopt($this->ch, CURLOPT_POSTFIELDS, json_encode($this->wrapper->getInput()));
         }
 
-        if ($this->wrapper->getToken()) {
-            $headers[] = 'Authorization: token ' . $this->wrapper->getToken();
-        }
-
-        if ($this->wrapper->getSiret()) {
-            $headers[] = 'X-SIRET: ' . $this->wrapper->getSiret();
-        }
-
-        if ($this->wrapper instanceof MDApiWrapperAuth) {
-            if ($this->wrapper->getSecureKey()) {
-                $headers[] = 'X-WEBHOOKHASH: ' . $this->wrapper->getSecureKey();
-            }
-            if ($this->wrapper->getWebHookUrl()) {
-                $headers[] = 'X-WEBHOOKURL: ' . $this->wrapper->getWebHookUrl();
-            }
-        }
+        $headers = $this->wrapper->getHeaders();
 
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
         $content = curl_exec($this->ch);

@@ -101,4 +101,9 @@ interface MDApiWrapperInterface
      * @return $this
      */
     public function setSiret($siret);
+
+    /**
+     * @return array
+     */
+    public function getHeaders();
 }

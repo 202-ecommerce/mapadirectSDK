@@ -182,4 +182,15 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
 
         return $this;
     }
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        $headers[] = 'X-SIRET: ' . $this->siret;
+        $headers[] = 'Authorization: token ' . $this->token;
+
+        return $headers;
+    }
 }

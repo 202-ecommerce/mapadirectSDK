@@ -88,4 +88,16 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
     {
         $this->webHookUrl = $webHookUrl;
     }
+
+    /**
+     * @return array
+     */
+    public function getHeaders()
+    {
+        $headers[] = 'X-SIRET: ' . $this->siret;
+        $headers[] = 'X-WEBHOOKHASH: ' . $this->secureKey;
+        $headers[] = 'X-WEBHOOKURL: ' . $this->webHookUrl;
+
+        return $headers;
+    }
 }

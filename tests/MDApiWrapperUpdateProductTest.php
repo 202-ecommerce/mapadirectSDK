@@ -42,6 +42,8 @@ class MDApiWrapperUpdateProductTest extends TestCase
         $data = 'my-token-supply-by-mapadirect-api';
         $wrapper->setToken($data);
         $this->assertEquals($wrapper->getToken(), $data);
+
+        $this->assertEquals($wrapper->getHeaders(), array("X-SIRET: 52807584900042", "Authorization: token my-token-supply-by-mapadirect-api"));
     }
 
     public function testCheck()

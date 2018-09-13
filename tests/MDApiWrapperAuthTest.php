@@ -54,6 +54,8 @@ class MDApiWrapperAuthTest extends TestCase
         $data = 'login:password';
         $wrapper->setWebHookUrl($data);
         $this->assertEquals($wrapper->getWebHookUrl(), $data);
+
+        $this->assertEquals($wrapper->getHeaders(), array("X-SIRET: 52807584900042", "X-WEBHOOKHASH: my-secret-keys", "X-WEBHOOKURL: login:password"));
     }
 
 
@@ -65,5 +67,6 @@ class MDApiWrapperAuthTest extends TestCase
         $data = '52807584900042';
         $wrapper->setSiret($data);
         $this->assertFalse($wrapper->check());
+
     }
 }
