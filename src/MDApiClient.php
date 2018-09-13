@@ -23,6 +23,7 @@
  */
 
 namespace MapaDirectSDK;
+
 use MapaDirectSDK\MDApiResponse;
 use MapaDirectSDK\Wrappers\MDApiWrapperAuth;
 use MapaDirectSDK\Wrappers\MDApiWrapperAddProduct;
@@ -33,7 +34,6 @@ use MapaDirectSDK\Wrappers\MDApiWrapperGetCategories;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetTaxes;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
-use Exception;
 
 /**
  * @desc: API Client
@@ -88,7 +88,7 @@ class MDApiClient
         $wrappersName = array_keys($wrappers);
 
         if (!in_array($wrapper, $wrappersName, true)) {
-            throw new Exception('Please set a wrapper in: '. implode(', ', $wrappersName));
+            throw new \Exception('Please set a wrapper in: '. implode(', ', $wrappersName));
         }
 
         return new $wrappers[$wrapper];
@@ -127,7 +127,7 @@ class MDApiClient
         if ($this->wrapper->check()) {
             return $this->send();
         } else {
-            throw new Exception('Please verify the configuration of your wrapper.
+            throw new \Exception('Please verify the configuration of your wrapper.
             Did you forget to set credential or input data ?');
         }
     }
@@ -139,7 +139,7 @@ class MDApiClient
     private function send()
     {
         if (!$this->wrapper) {
-            throw new Exception('Please set a webservice before calling ');
+            throw new \Exception('Please set a webservice before calling ');
         }
 
         $url = $this->url . $this->wrapper->getUri();
@@ -182,12 +182,17 @@ class MDApiClient
 
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
         $content = curl_exec($this->ch);
-        curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
+        $httpsCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
         curl_close($this->ch);
-        $this->response = new MDApiResponse('success');
-        $this->wrapper->parseResponse($this->response, $content);
-
-        return true;
+        if ($httpsCode == 200) {
+            $this->response = new MDApiResponse('success');
+            $this->wrapper->parseResponse($this->response, $content);
+            return true;
+        } else {
+            $this->response = new MDApiResponse('failure');
+            $this->wrapper->parseResponse($this->response, $content);
+            return false;
+        }
     }
 
     /**

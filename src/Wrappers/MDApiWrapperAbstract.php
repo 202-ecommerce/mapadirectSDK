@@ -23,6 +23,7 @@
  */
 
 namespace MapaDirectSDK\Wrappers;
+
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
 use MapaDirectSDK\MDApiResponse;
 
