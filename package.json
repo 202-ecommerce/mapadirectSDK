@@ -1,0 +1,31 @@
+{
+  "name": "mapadirect-sdk",
+  "version": "1.0.0",
+  "description": "MapaDirect marketplace API",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
+  "scripts": {
+    "doc-build": "stylemark -i doc -o build/doc -c doc/config.yml",
+    "doc-watch": "stylemark -i doc -o build/doc -c doc/config.yml -w -b"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/202-ecommerce/mapadirectSDK.git"
+  },
+  "keywords": [
+    "MapaDirect",
+    "API",
+    "marketplace"
+  ],
+  "author": "202-ecommerce",
+  "bugs": {
+    "url": "https://github.com/202-ecommerce/mapadirectSDK/issues"
+  },
+  "homepage": "https://github.com/202-ecommerce/mapadirectSDK#readme",
+  "devDependencies": {
+    "stylemark": "^3.0.3"
+  }
+}

@@ -1,6 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
+.vscode
 composer.lock
 vendor
 cache.properties
 build/*/*
+node_modules

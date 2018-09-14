@@ -2,8 +2,8 @@
 
 ## About
 
-Let the merchant use MapaDirect as a new selling place.
-SDK contains 8 requests:
+Let the merchants use MapaDirect as a new selling place.  
+The SDK contains 8 requests:
 1. Auth
 2. AddProduct
 3. UpdateProduct
@@ -13,13 +13,32 @@ SDK contains 8 requests:
 7. GetTaxes
 8. GetCategies
 
-[The documentation][2] of the API of the marketplace.
+[The documentation][1] of the marketplace API.
 
 ## Installation
 
-For install SDK you need  [Download and install composer][1]
-For use SDK cURL module must be enabled in your server!!!!
+To install the SDK you need to [Download and install composer][2].
 
+## Requirements
 
-[1]: https://getcomposer.org/download
-[2]: https://mapadirect.sandbox.wizaplace.com/api/v1/doc/#
+cURL module must be enabled in your server in order for the SDK to work.
+
+## Doc
+
+We use [Stylemark][3] to generate the documentation, go check how it works.  
+Documentation files are written in dedicated markdown files placed in `doc/src/`. They need to have the proper header in order to be processed.
+
+```sh
+# install dependencies
+npm install
+
+# build the documentation
+npm run doc-build
+
+# or watch changes (dev server + hot reload)
+npm run doc-watch
+```
+
+[1]: https://mapadirect.sandbox.wizaplace.com/api/v1/doc/#
+[2]: https://getcomposer.org/download
+[3]: https://github.com/nextbigsoundinc/stylemark
