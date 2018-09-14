@@ -16,6 +16,12 @@
     <target name="build-dox-clean"
         depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb" />
 
+    <target name="build-doc"
+        depends="build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm-install,doc" />
+
+    <target name="build-doc-clean"
+        depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm,doc" />
+
     <target name="build-parallel"
         depends="build-common,tools-parallel" />
 
@@ -42,13 +48,13 @@
         <delete dir="${build-dir}/api" />
         <delete dir="${build-dir}/code-browser" />
         <delete dir="${build-dir}/coverage" />
+        <delete dir="${build-dir}/doc" />
         <delete dir="${build-dir}/logs" />
         <delete dir="${build-dir}/pdepend" />
     </target>
 
     <target name="composer" depends="clean-composer,composer-install,composer-update" description="Install or update dependencies" />
 
-    <!--// Check to see it the vendor folder already exist, if so, then no reason to run //-->
     <target name="composer.check">
         <condition property="composer.lock.exist.in.gitignore">
             <resourcecontains resource="${basedir}/.gitignore" substring="composer.lock" />
@@ -110,8 +116,9 @@
             <arg path="${src-dir}" />
         </exec>
     </target>
+
     <target name="phpcs"
-         description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+        description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
         <exec executable="vendor/bin/phpcs">
             <arg value="--standard=${build-dir}/phpcs.xml" />
             <arg path="${src-dir}" />
@@ -142,13 +149,33 @@
         </exec>
     </target>
 
-     <target name="prepare" depends="clean-build" description="Prepare for build">
+    <target name="prepare" depends="clean-build" description="Prepare for build">
         <echo>Making the build artifact folders</echo>
         <mkdir dir="${build-dir}/api" />
         <mkdir dir="${build-dir}/code-browser" />
         <mkdir dir="${build-dir}/coverage" />
         <mkdir dir="${build-dir}/logs" />
         <mkdir dir="${build-dir}/pdepend" />
+        <mkdir dir="${build-dir}/doc" />
+    </target>
+
+    <target name="npm" depends="clean-npm,npm-install" description="Install or update node dependencies" />
+
+    <target name="clean-npm" description="Empty node_modules folder">
+        <delete dir="${basedir}/node_modules" />
+    </target>
+
+    <target name="npm-install" description="Installing node deps">
+        <exec executable="npm">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="doc" description="Build documentation mini site.">
+        <exec executable="npm">
+            <arg value="run" />
+            <arg value="doc-build" />
+        </exec>
     </target>
 
 </project>
