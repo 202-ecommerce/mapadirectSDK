@@ -37,7 +37,7 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
      * @var string
      * @desc A-Token for auth
      */
-    private $secureKey;
+    private $webHookHash;
 
     /**
      * @var string
@@ -60,17 +60,17 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
     /**
      * @return string
      */
-    public function getSecureKey()
+    public function getWebHookHash()
     {
-        return $this->secureKey;
+        return $this->webHookHash;
     }
 
     /**
-     * @param string $secureKey
+     * @param string $webHookHash
      */
-    public function setSecureKey($secureKey)
+    public function setWebHookHash($webHookHash)
     {
-        $this->secureKey = $secureKey;
+        $this->webHookHash = $webHookHash;
     }
 
     /**
@@ -95,7 +95,7 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
     public function getHeaders()
     {
         $headers[] = 'X-SIRET: ' . $this->siret;
-        $headers[] = 'X-WEBHOOKHASH: ' . $this->secureKey;
+        $headers[] = 'X-WEBHOOKHASH: ' . $this->webHookHash;
         $headers[] = 'X-WEBHOOKURL: ' . $this->webHookUrl;
 
         return $headers;

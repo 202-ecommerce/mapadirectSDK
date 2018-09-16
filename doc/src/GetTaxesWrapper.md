@@ -1,21 +1,27 @@
 ---
-name: GetTaxes Wrapper
-category: Wrappers
+name: 2. GetTaxes
+category: Webservices
 ---
 
 
-## GetTaxes Wrapper ##
+## Enveloppe pour lister les taxes (TVA) ##
 
 
 ### Description ###
 
-Le webservice GetTaxes permet de lister toutes les taxes (TVA) disponible.
+Le webservice `GetTaxes` permet de lister toutes les taxes (TVA) disponible.
 
-Chemin: /taxes
-Méthode: GET
+Il est nécessaire à l'initialisation de votre catalogue de récupérer les identifiants de taxes
+afin de compléter votre catalogue de produits avec les valeurs de taxe correspondant à la fiscalité
+de vos produits.
+
+**Nous recommandons très fortement de mettre en place un système permettant de mettre en cache la réponse de ce webservice.**
+
 HTTP header:
 
 ```
+Path: /taxes
+Method: GET
 Authorization: token your_api_key
 X-SIRET: Siret_du_marchand
 ```
@@ -53,6 +59,7 @@ $wrapper->setToken(Configuration::get(Mapadirect::AUTH_TOKEN));
 $wrapper->setSiret(Configuration::get(mapadirect::SIRET));
 $client->call($wrapper);
 $data = $client->getResponse()->getContent();
+// mise en cache de $data recommandée
 ```
 
-$data retourne un tableau php comme décrit dans le corps de la réponse.
+`$data` retourne un tableau php comme décrit dans le corps de la réponse.

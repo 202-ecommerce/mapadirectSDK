@@ -1,32 +1,36 @@
-MapadirectSDK, PHP client for Mapadirect Marketplace API
+---
+name: Installation
+category: Introduction
+---
+
+MapadirectSDK, client PHP pour l'API de la marketplace Mapadirect
 =======================
 
-[![Latest Version](https://img.shields.io/github/release/202-ecommerce/mapadirectSDK/all.svg?style=flat-square)](https://github.com/guzzle/guzzle/releases)
-[![Total Downloads](https://img.shields.io/packagist/dt/mapadirectsdk/mapadirectsdk.svg?style=flat-square)](https://packagist.org/packages/guzzlehttp/guzzle)
+[![Latest Version](https://img.shields.io/github/release/202-ecommerce/mapadirectSDK/all.svg?style=flat-square)](https://github.com/202-ecommerce/mapadirectSDK/releases)
+[![Total Downloads](https://img.shields.io/packagist/dt/mapadirectsdk/mapadirectsdk.svg?style=flat-square)](https://packagist.org/packages/mapadirectsdk/mapadirectsdk)
 ![Requirements](https://img.shields.io/packagist/php-v/mapadirectsdk/mapadirectsdk.svg?style=flat-square)
 
 
-MapadirectSDK est une librairie PHP permettant de connecter vote site marchand à la
+MapadirectSDK est une librairie PHP permettant de connecter votre site marchand à la
 marketplace Mapadirect.
 
-La librairie permert de synchroniser sont catalogue et recevoir des commandes de la market place
+La librairie permert de synchroniser son catalogue de produits et recevoir les commandes prises sur la marketplace.
 
 ## Documentation
 
-Vous trouverez ici la [documentation de mapadirectsdk](https://docs.202-ecommerce.com/mapadirectsdk/)
+Vous trouverez ici la [documentation de la librairie mapadirectsdk](https://docs.202-ecommerce.com/mapadirectsdk/).
 
 
 ## Installer mapadirectsdk
 
-Nous recommandons d'installer mapadirectsdk avec composer
-[Composer](http://getcomposer.org).
+Nous recommandons d'installer mapadirectsdk via composer [Composer](http://getcomposer.org).
 
 ```bash
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Ensuite, lancer la commande Composer command pour installer la dernière version de mapadirectSDK:
+Ensuite, lancer la commande Composer command pour installer la dernière version de la librairie mapadirectsdk:
 
 ```bash
 php composer.phar require mapadirectsdk/mapadirectsdk
@@ -38,7 +42,7 @@ Après installation vous devez appeler l'autoload de Composer :
 require 'vendor/autoload.php';
 ```
 
-Vous pourrez ensuite mettre à jour mapadirectsdk en utilisant composer:
+Vous pourrez ensuite mettre à jour la librairie mapadirectsdk en utilisant composer:
 
  ```bash
 composer.phar update

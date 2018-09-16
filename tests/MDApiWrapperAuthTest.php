@@ -44,8 +44,8 @@ class MDApiWrapperAuthTest extends TestCase
         $this->assertEquals($wrapper->getInput(), $data);
 
         $data = 'my-secret-keys';
-        $wrapper->setSecureKey($data);
-        $this->assertEquals($wrapper->getSecureKey(), $data);
+        $wrapper->setWebHookHash($data);
+        $this->assertEquals($wrapper->getWebHookHash(), $data);
 
         $data = 'login:password';
         $wrapper->setCredentials($data);

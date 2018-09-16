@@ -1,25 +1,30 @@
 ---
-name: Auth Wrapper
-category: Wrappers
+name: 1. Auth
+category: Webservices
 ---
 
 
-## Authentication Wrapper ##
+## Enveloppe pour s'authentifier à l'API ##
 
 
 ### Description ###
 
-Le webservice d'authentification permet de retourner la clef d'API qui sera ensuite utilisé par autes webservice pour authentifier le marchand sur l'API mapadirect.
+Le webservice d'authentification permet de retourner la clef d'API qui devra ensuite utilisé par tous les autres webservice pour authentifier le marchand sur l'API MapaDirect.
 
-Chemin: /users/authenticate
-Méthode: GET
+L'appel à ce webservice est indispensable à la première utilisation de l'API MapaDirect.
+
+Vous devez spécifier l'URL du webhook et le hash de sécurité (secret partagé avec MapaDirect).
+Si vous devez par la suite changer l'url ou le hash du webhook, vous devrez renouveller l'appel à l'authentification.
+
 HTTP header:
 
 ```
+Path: /users/authenticate
+Method: GET
 Authorization: Basic authentication
 X-SIRET: Siret_du_marchand
-X-WEBHOOKHASH: a_secret_path_phrase_to_authenticate_the_webhook
 X-WEBHOOKURL: https://you-shop-domain.tld/webhook-mapadirect
+X-WEBHOOKHASH: a_secret_path_phrase_to_authenticate_the_webhook
 ```
 
 L'authentification est établie à partir de l'identifiant / mot de passe du marchand sur la marketplace MapaDirect.
@@ -45,16 +50,18 @@ Messages d'erreur :
 use MapaDirectSDK\MDApiClient;
 
 $wrapper = MDApiClient::getWrapper('Auth');
-$client = new MDApiClient();
 $wrapper->setCredentials('you.marchand.email@domain.tld:password');
 $wrapper->setSiret('20220220220220');
-$wrapper->setSecureKey('488e7cafd8fc88f386ba2a88574a7f35');
-$wrapper->setWebHookUrl('https://localhost/mapadirect/module/mapadirect/ordersSync');
+$wrapper->setWebHookUrl('https://you-shop-domain.tld/module/mapadirect/ordersSync');
+$wrapper->setWebHookHash('488e7cafd8fc88f386ba2a88574a7f35');
+
+$client = new MDApiClient();
 $client->call($wrapper);
 $data = $client->getResponse()->getContent();
 if ($client->getResponse()->isSuccess()) {
     $idMarchand = $data['id'];
     $apiKey = $data['apiKey'];
+    // store API_key somewhere like in a database
 } else {
     $error = $data['message'];
 }

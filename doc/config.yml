@@ -1,19 +1,22 @@
-name: mapadirectsdk
+name: Mapadirect SDK
 
 excludeDir:
   - node_modules
 
 # List of relative file/directory paths to copy and mirror in the generated documentation
+# ALL LINK MUST BE RELATIVE TO THE doc/ FOLDER
 assets:
-  - ./doc/assets/
+  - ./doc/src/assets/
 
 # Default values for 202 sidebar theming
 theme:
-  logo: ./doc/assets/logo.png
+  logo: ./doc/src/assets/logo.png
   css:
   sidebar:
     background: "#33363b"
     textColor: "#fff"
 
 order:
+  - Introduction
+  - Webservices
   - Wrappers

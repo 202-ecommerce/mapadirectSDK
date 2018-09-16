@@ -1,21 +1,27 @@
 ---
-name: GetCategories Wrapper
-category: Wrappers
+name: 3. GetCategories
+category: Webservices
 ---
 
 
-## GetCategories Wrapper ##
+## Enveloppe pour lister l'arborescence des catégories ##
 
 
 ### Description ###
 
-Le webservice GetTaxes permet de lister toutes les catégories disponible sur la marketplace.
+Le webservice `GetCategories` permet de lister toutes les catégories disponible sur la marketplace MapaDirect.
 
-Chemin: /catalog/categories/tree
-Méthode: GET
-HTTP header:
+Il est indispensable à l'initialisation de votre catalogue de récupérer la liste des categories.
+Vous pourrez ainsi soumettre votre catalogue de produits en les associant à l'arborescence de
+la marketplace MapaDirect.
+
+**Nous recommandons très fortement de mettre en place un système permettant de mettre en cache la réponse de ce webservice.**
+
+HTTP header de la requète :
 
 ```
+Path: /catalog/categories/tree
+Method: GET
 Authorization: token your_api_key
 X-SIRET: Siret_du_marchand
 ```
@@ -68,12 +74,14 @@ Corps de la réponse :
 ```php
 use MapaDirectSDK\MDApiClient;
 
-$client = new MDApiClient();
 $wrapper = MDApiClient::getWrapper('GetCategories');
 $wrapper->setToken(AUTH_TOKEN);
 $wrapper->setSiret(SIRET);
+
+$client = new MDApiClient();
 $client->call($wrapper);
 $data = $client->getResponse()->getContent();
+// mise en cache de $data recommandée
 ```
 
-$data retourne un tableau php comme décrit dans le corps de la réponse.
+`$data` retourne un tableau php comme décrit dans le corps de la réponse.
