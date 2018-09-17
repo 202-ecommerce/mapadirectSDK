@@ -49,8 +49,8 @@ Corps de la réponse :
 use MapaDirectSDK\MDApiClient;
 
 $wrapper = MDApiClient::getWrapper('ping');
-$wrapper->setToken(Configuration::get(Mapadirect::AUTH_TOKEN));
-$wrapper->setSiret(Configuration::get(mapadirect::SIRET));
+$wrapper->setToken(AUTH_TOKEN);
+$wrapper->setSiret(SIRET);
 
 $client = new MDApiClient();
 if (!$client->call($wrapper)) {

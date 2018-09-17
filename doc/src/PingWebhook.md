@@ -37,11 +37,9 @@ HTTP header de réponse (que vous devez retourner) :
 Corps de la réponse :
 
 ```application/json
-[
-    {
-        "message": "Ping OK"
-    }
-]
+{
+    "message": "Ping OK"
+}
 ```
 
 Le message retourné par votre webhook de ping sera transféré et retrouné par le webservice de Ping.
@@ -50,14 +48,18 @@ Le message retourné par votre webhook de ping sera transféré et retrouné par
 ### Exemple ###
 
 ```php
-use MapaDirectSDK\OrderWebhook;
+use MapaDirectSDK\Webhooks\WebhookOrder;
+use MapaDirectSDK\Webhooks\WebhookPingException;
+use MapaDirectSDK\Webhooks\WebhookErrorException;
+use MapaDirectSDK\Webhooks\WebhookRequest;
 
-$webhook = new OrderWebhook();
-$webhook->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
+$wrapper = new WebhookOrder();
+$wrapper->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
+$wrapper->setRequest(new WebhookRequest);
 try {
     $webhook->process();
-} catch (MapadirectPingException | MapadirectErrorException $e) {
-    $webhook->sendResponse();
+} catch (WebhookPingException | WebhookErrorException $e) {
+    echo $e->sendResponse();
     exit;
 }
 ```

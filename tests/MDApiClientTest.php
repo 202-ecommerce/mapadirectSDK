@@ -25,6 +25,10 @@ class MDApiClientTest extends TestCase
     public function testGetApiUrl()
     {
         $this->assertEquals(MDApiClient::DEFAULT_URL, $this->clientMD->getUrl());
+
+        $wrapper = MDApiClient::getWrapper('GetTaxes');
+        $this->expectException(Exception::class);
+        $this->clientMD->call($wrapper);
     }
 
     public function testSetApiUrl()

@@ -74,18 +74,21 @@ HTTP header de réponse (que vous devez retourner) :
 Le SDK mapadirect dispose d'une classe permettant de vérifier le jeton.
 
 ```php
-use MapaDirectSDK\OrderWebhook;
+use MapaDirectSDK\Webhooks\WebhookOrder;
+use MapaDirectSDK\Webhooks\WebhookPingException;
+use MapaDirectSDK\Webhooks\WebhookErrorException;
+use MapaDirectSDK\Webhooks\WebhookRequest;
 
-$webhook = new OrderWebhook();
-$webhook->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
+$wrapper = new WebhookOrder();
+$wrapper->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
+$wrapper->setRequest(new WebhookRequest);
 try {
     $webhook->process();
     $data = $webhook->getData();
 
     // create or update the order
-
-} catch (MapadirectPingException | MapadirectErrorException $e) {
-    $webhook->sendResponse();
+} catch (WebhookPingException | WebhookErrorException $e) {
+    echo $e->sendResponse();
     exit;
 }
 ```

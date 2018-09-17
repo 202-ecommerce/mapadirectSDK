@@ -75,8 +75,8 @@ Corps de la réponse :
 use MapaDirectSDK\MDApiClient;
 
 $wrapper = MDApiClient::getWrapper('GetCategories');
-$wrapper->setToken(AUTH_TOKEN);
-$wrapper->setSiret(SIRET);
+$wrapper->setToken($apiKey);
+$wrapper->setSiret($siret);
 
 $client = new MDApiClient();
 $client->call($wrapper);

@@ -55,8 +55,8 @@ use MapaDirectSDK\MDApiClient;
 
 $client = new MDApiClient();
 $wrapper = MDApiClient::getWrapper('GetTaxes');
-$wrapper->setToken(Configuration::get(Mapadirect::AUTH_TOKEN));
-$wrapper->setSiret(Configuration::get(mapadirect::SIRET));
+$wrapper->setToken($apiKey);
+$wrapper->setSiret($siret);
 $client->call($wrapper);
 $data = $client->getResponse()->getContent();
 // mise en cache de $data recommandée
