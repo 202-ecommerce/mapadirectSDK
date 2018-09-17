@@ -1,4 +1,4 @@
-name: Mapadirect SDK
+name: MapaDirect SDK
 
 excludeDir:
   - node_modules
