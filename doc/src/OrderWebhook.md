@@ -71,6 +71,7 @@ HTTP header de réponse (que vous devez retourner) :
 Liste des status de commande :
 
 | Statut | Commentaire |
+| ------ | ------ |
 | VALIDATED | La commande est valide sur MapaDirect et cours de traitement par le marchand. |
 | SENT | Le marchand a expédié la commande. |
 | RECEIVED | Le client a reçu la commande. |
