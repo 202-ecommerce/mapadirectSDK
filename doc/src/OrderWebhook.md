@@ -68,6 +68,16 @@ HTTP header de réponse (que vous devez retourner) :
 | 409 | The order has already been processed |
 | 50x | Internal Server |
 
+Liste des status de commande :
+
+| Statut | Commentaire |
+| VALIDATED | La commande est valide sur MapaDirect et cours de traitement par le marchand. |
+| SENT | Le marchand a expédié la commande. |
+| RECEIVED | Le client a reçu la commande. |
+| EMITTED | La facture a été générée et dématérialisée. |
+| TOTALLYPAID | La facture a été payée (entièrement). |
+| ERROR | Commande rejetée, a priori non envoyé car non géré pour l'instant |
+
 
 ### Exemple ###
 

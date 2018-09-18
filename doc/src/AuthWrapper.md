@@ -9,9 +9,9 @@ category: Webservices
 
 ### Description ###
 
-Le webservice d'authentification permet de retourner la clef d'API qui devra ensuite utilisé par tous les autres webservice pour authentifier le marchand sur l'API MapaDirect.
+Le webservice d'authentification permet de retourner la clef d'API qui devra ensuite être utilisée par tous les autres webservices afin d'authentifier le marchand sur l'API MapaDirect.
 
-L'appel à ce webservice est indispensable à la première utilisation de l'API MapaDirect.
+L'appel à ce webservice est indispensable lors de la première utilisation de l'API MapaDirect.
 
 Vous devez spécifier l'URL du webhook et le hash de sécurité (secret partagé avec MapaDirect).
 Si vous devez par la suite changer l'url ou le hash du webhook, vous devrez renouveller l'appel à l'authentification.
