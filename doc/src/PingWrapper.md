@@ -1,5 +1,5 @@
 ---
-name: 9. Ping
+name: 9. Ping (en cours)
 category: Webservices
 ---
 

@@ -10,9 +10,9 @@ category: Webhooks
 ### Description ###
 
 
-Pour tester la disponibilité de votre webhook order, vous pouvez appeller le webservice ping qui exécutera une requète sur votre webhook afin de vérifier que la clef est correctemetn configuré et qu'il est bien accessible.
+Pour tester la disponibilité de votre webhook order, vous pouvez appeller le webservice ping qui exécutera une requète sur votre webhook afin de vérifier que la clef est correctement configuré et qu'il est bien accessible.
 
-Pour tester au plus proche des conditions d'envoi du webhook order, l'enveloppe d'appel reste la même que order, mais le corps de la réponse sera vide.
+Pour tester au plus proche des conditions d'envoi du webhook order, l'enveloppe d'appel reste la même que order, mais le corps de la requète sera vide.
 ```
 Path: /webhook-mapadirect
 Method: POST
@@ -29,7 +29,7 @@ HTTP header de réponse (que vous devez retourner) :
 
 | Statut | Message |
 | ------ | ------ |
-| 201 | Ping valid |
+| 200 | Ping valid |
 | 400 | Token not valid |
 | 50x | Internal Server |
 
@@ -38,7 +38,7 @@ Corps de la réponse :
 
 ```application/json
 {
-    "message": "Ping OK"
+    "message": "Ping valid"
 }
 ```
 
@@ -63,5 +63,3 @@ try {
     exit;
 }
 ```
-
-Pour connaître les spécifications techniques du webservice `ping`, veuillez lire la rubrique Webservices > Ping.

@@ -24,36 +24,201 @@ Method: POST
 Authorization: token a_secret_path_phrase_to_authenticate_the_webhook
 ```
 
-Corps de la requète :
+Corps de la requète (exemple) :
 
 ```application/json
 {
-    {
-        "id": "string",
-        "siretNumber": "string",
-        "total": 123.45,
-        "subtotal": 123.45,
-        "timestamp": 1.5,
-        "status": "SENT",
-        "shippingAddress": {
-        "contactFullName": "string",
-        "company": "string",
-        "address": "string",
-        "address2": "string",
-        "city": "string",
-        "zipcode": "string",
-        "country": "FR",
-        "contactPhone": "+33123456789"
-    },
-    "items": [
-        {
-        "productName": "string",
-        "productCode": "string",
-        "price": 100,
-        "amount": 1
-        }
+  "address": {
+    "city": "GUYANCOURT",
+    "lines": [
+      "2 RUE EUGENE VIOLLET LE DUC",
+      "PLACEHOLDER_EMPTYSTRING"
     ],
-    "paymentMethod": "string"
+    "postalCode": "78280"
+  },
+  "commitment": {
+    "commitmentDate": "2018-06-22",
+    "commitmentNumber": "18 - 144 / 016116G"
+  },
+  "currency": "EUR",
+  "customer": {
+    "address": {
+      "city": "GUYANCOURT",
+      "lines": [
+        "2 RUE EUGENE VIOLLET LE DUC",
+        "PLACEHOLDER_EMPTYSTRING"
+      ],
+      "postalCode": "78280"
+    },
+    "contact": {
+      "email": "f.retrou+lycvillaroy@mapadirect.fr",
+      "name": "Patricia Raclot",
+      "telephone": "0139306460"
+    },
+    "identification": {
+      "id": "19781949300010",
+      "idType": "SIRET"
+    },
+    "legalEntity": {
+      "intraCommunityVATNumber": "FRXXX",
+      "registrationAddress": {
+        "city": "GUYANCOURT",
+        "lines": [
+          "2 RUE EUGENE VIOLLET LE DUC",
+          "PLACEHOLDER_EMPTYSTRING"
+        ],
+        "postalCode": "78280"
+      },
+      "registrationName": "LYCEE DE VILLAROY"
+    }
+  },
+  "delivery": {
+    "deliveryLocation": {
+      "address": {
+        "city": "GUYANCOURT",
+        "lines": [
+          "2 RUE EUGENE VIOLLET LE DUC",
+          "PLACEHOLDER_EMPTYSTRING"
+        ],
+        "postalCode": "78280"
+      },
+      "siteName": "PLACEHOLDER_EMPTYSTRING"
+    }
+  },
+  "formLinkUuid": "PROCESSED",
+  "invoiceDate": "2018-07-20",
+  "invoiceNumber": "F180715190",
+  "issueDate": "2018-07-13",
+  "legalMonetaryTotal": {
+    "note": [
+      "PLACEHOLDER_EMPTYSTRING"
+    ],
+    "taxExclusiveAmount": 121.76,
+    "taxInclusiveAmount": 146.11,
+    "totalTaxAmount": 24.352
+  },
+  "orderIdentifier": "1",
+  "productLines": [
+    {
+      "commission": {
+        "flatRateAmount": 0,
+        "rate": 0.1
+      },
+      "name": "Cordon RJ45 catégorie 5e F/UTP jaune - 3 m",
+      "quantity": 1,
+      "referenceCode": "854106",
+      "taxExclusiveAmount": 3.49,
+      "taxExclusiveUnitPrice": 3.49,
+      "taxInclusiveAmount": 4.19,
+      "totalTaxAmount": 0.698,
+      "VATRate": 20
+    },
+    {
+      "commission": {
+        "flatRateAmount": 0,
+        "rate": 0.1
+      },
+      "name": "Cordon RJ45 catégorie 5e F/UTP violet - 0,5 m",
+      "quantity": 5,
+      "referenceCode": "847168",
+      "taxExclusiveAmount": 14.95,
+      "taxExclusiveUnitPrice": 2.99,
+      "taxInclusiveAmount": 17.94,
+      "totalTaxAmount": 2.99,
+      "VATRate": 20
+    },
+    {
+      "commission": {
+        "flatRateAmount": 0,
+        "rate": 0.1
+      },
+      "name": "Cordon RJ45 catégorie 5e F/UTP rose - 1 m",
+      "quantity": 5,
+      "referenceCode": "847157",
+      "taxExclusiveAmount": 17.45,
+      "taxExclusiveUnitPrice": 3.49,
+      "taxInclusiveAmount": 20.94,
+      "totalTaxAmount": 3.49,
+      "VATRate": 20
+    },
+    {
+      "commission": {
+        "flatRateAmount": 0,
+        "rate": 0.1
+      },
+      "name": "Cordon RJ45 catégorie 5e F/UTP vert - 2 m",
+      "quantity": 2,
+      "referenceCode": "854115",
+      "taxExclusiveAmount": 6.38,
+      "taxExclusiveUnitPrice": 3.19,
+      "taxInclusiveAmount": 7.66,
+      "totalTaxAmount": 1.276,
+      "VATRate": 20
+    },
+    {
+      "commission": {
+        "flatRateAmount": 0,
+        "rate": 0.1
+      },
+      "name": "Cordon RJ45 catégorie 5e F/UTP rouge - 2 m",
+      "quantity": 21,
+      "referenceCode": "854135",
+      "taxExclusiveAmount": 66.99,
+      "taxExclusiveUnitPrice": 3.19,
+      "taxInclusiveAmount": 80.39,
+      "totalTaxAmount": 13.398,
+      "VATRate": 20
+    }
+  ],
+  "shippingCostLine": {
+    "taxExclusiveAmount": 12.5,
+    "taxInclusiveAmount": 15,
+    "totalTaxAmount": 2.5,
+    "VATRate": 20
+  },
+  "status": "EMITTED",
+  "supplier": {
+    "bankAccount": {
+      "BIC": "CMCIFR2A",
+      "IBAN": "FR7610278060860003209034562"
+    },
+    "commercialAddress": {
+      "city": "SAINT GERMAIN EN LAYE",
+      "lines": [
+        "21 AV SAINT FIACRE"
+      ],
+      "postalCode": "78100"
+    },
+    "contact": {
+      "email": "f.retrou@neofutur.com",
+      "name": "Matthieu DUBREUIL",
+      "telephone": "0134741111"
+    },
+    "identification": {
+      "id": "42418645000021",
+      "idType": "SIRET"
+    },
+    "legalEntity": {
+      "intraCommunityVATNumber": "FR66424186450",
+      "registrationAddress": {
+        "city": "SAINT GERMAIN EN LAYE",
+        "lines": [
+          "21 AV SAINT FIACRE"
+        ],
+        "postalCode": "78100"
+      },
+      "registrationName": "NEOFUTUR"
+    },
+    "legalNotices": []
+  },
+  "taxTotals": [
+    {
+      "rate": 20,
+      "taxAmount": 24.352,
+      "taxExclusiveAmount": 121.76
+    }
+  ],
+  "timestamp": 1532092031
 }
 ```
 
@@ -63,7 +228,7 @@ HTTP header de réponse (que vous devez retourner) :
 
 | Statut | Message |
 | ------ | ------ |
-| 201 | Order valid |
+| 200 | Order valid |
 | 400 | The order format is invalid |
 | 409 | The order has already been processed |
 | 50x | Internal Server |
@@ -90,16 +255,18 @@ use MapaDirectSDK\Webhooks\WebhookPingException;
 use MapaDirectSDK\Webhooks\WebhookErrorException;
 use MapaDirectSDK\Webhooks\WebhookRequest;
 
-$wrapper = new WebhookOrder();
-$wrapper->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
-$wrapper->setRequest(new WebhookRequest);
+$webhook = new WebhookOrder();
+$webhook->setWebHookHash('a_secret_path_phrase_to_authenticate_the_webhook');
+$webhook->setRequest(new WebhookRequest);
 try {
     $webhook->process();
     $data = $webhook->getData();
 
     // create or update the order
-} catch (WebhookPingException | WebhookErrorException $e) {
-    echo $e->sendResponse();
-    exit;
+} catch (\Exception $e) {
+    if ($e instanceof WebhookPingException || $e WebhookErrorException BError) {
+        echo $e->sendResponse();
+        exit;
+    }
 }
 ```
