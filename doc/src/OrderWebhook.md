@@ -31,32 +31,32 @@ Corps de la requète (exemple) :
   "address": {
     "city": "GUYANCOURT",
     "lines": [
-      "2 RUE EUGENE VIOLLET LE DUC",
+      "2 RUE EUGENE RAFFIN",
       "PLACEHOLDER_EMPTYSTRING"
     ],
     "postalCode": "78280"
   },
   "commitment": {
     "commitmentDate": "2018-06-22",
-    "commitmentNumber": "18 - 144 / 016116G"
+    "commitmentNumber": "18 - 144 / 016G"
   },
   "currency": "EUR",
   "customer": {
     "address": {
       "city": "GUYANCOURT",
       "lines": [
-        "2 RUE EUGENE VIOLLET LE DUC",
+        "2 RUE EUGENE RAFFIN",
         "PLACEHOLDER_EMPTYSTRING"
       ],
       "postalCode": "78280"
     },
     "contact": {
-      "email": "f.retrou+lycvillaroy@mapadirect.fr",
-      "name": "Patricia Raclot",
+      "email": "exemple@mapadirect.fr",
+      "name": "Patricia Jeannot",
       "telephone": "0139306460"
     },
     "identification": {
-      "id": "19781949300010",
+      "id": "19781123300010",
       "idType": "SIRET"
     },
     "legalEntity": {
@@ -64,7 +64,7 @@ Corps de la requète (exemple) :
       "registrationAddress": {
         "city": "GUYANCOURT",
         "lines": [
-          "2 RUE EUGENE VIOLLET LE DUC",
+          "2 RUE EUGENE RAFFIN",
           "PLACEHOLDER_EMPTYSTRING"
         ],
         "postalCode": "78280"
@@ -77,7 +77,7 @@ Corps de la requète (exemple) :
       "address": {
         "city": "GUYANCOURT",
         "lines": [
-          "2 RUE EUGENE VIOLLET LE DUC",
+          "2 RUE EUGENE RAFFIN",
           "PLACEHOLDER_EMPTYSTRING"
         ],
         "postalCode": "78280"
@@ -180,7 +180,7 @@ Corps de la requète (exemple) :
   "supplier": {
     "bankAccount": {
       "BIC": "CMCIFR2A",
-      "IBAN": "FR7610278060860003209034562"
+      "IBAN": "FR7610278060860003209123456"
     },
     "commercialAddress": {
       "city": "SAINT GERMAIN EN LAYE",
@@ -190,16 +190,16 @@ Corps de la requète (exemple) :
       "postalCode": "78100"
     },
     "contact": {
-      "email": "f.retrou@neofutur.com",
-      "name": "Matthieu DUBREUIL",
-      "telephone": "0134741111"
+      "email": "marchand@domain.com",
+      "name": "Matthieu Marchand",
+      "telephone": "0123456789"
     },
     "identification": {
-      "id": "42418645000021",
+      "id": "42410985000021",
       "idType": "SIRET"
     },
     "legalEntity": {
-      "intraCommunityVATNumber": "FR66424186450",
+      "intraCommunityVATNumber": "FR66499996450",
       "registrationAddress": {
         "city": "SAINT GERMAIN EN LAYE",
         "lines": [
@@ -207,7 +207,7 @@ Corps de la requète (exemple) :
         ],
         "postalCode": "78100"
       },
-      "registrationName": "NEOFUTUR"
+      "registrationName": "MARCHAND SUPER"
     },
     "legalNotices": []
   },
