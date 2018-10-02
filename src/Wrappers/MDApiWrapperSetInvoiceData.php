@@ -45,6 +45,10 @@ class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWr
             return false;
         }
 
+        if (empty($this->input)) {
+            return false;
+        }
+
         return parent::check();
     }
 
@@ -53,6 +57,6 @@ class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWr
      */
     public function getUri()
     {
-        return $this->uri.$this->id;
+        return $this->uri.$this->id.'/setinvoicedata';
     }
 }
