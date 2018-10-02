@@ -1,6 +1,6 @@
 ---
-name: 9. Ping (en cours)
-category: Webservices
+name: 1. Ping
+category: Webservices commandes
 ---
 
 

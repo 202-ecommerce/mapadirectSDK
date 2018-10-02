@@ -1,6 +1,6 @@
 ---
 name: 2. GetTaxes
-category: Webservices
+category: Webservices produits
 ---
 
 

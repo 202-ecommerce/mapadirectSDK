@@ -1,5 +1,5 @@
 ---
-name: Ping
+name: 2. Ping
 category: Webhooks
 ---
 
