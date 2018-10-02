@@ -4,7 +4,7 @@ category: Webservices commandes
 ---
 
 
-## Enveloppe pour mettre à jour un produit ##
+## Enveloppe pour envoyer les numéro et date de facture ##
 
 
 ### Description ###
