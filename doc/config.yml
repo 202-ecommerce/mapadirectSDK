@@ -18,5 +18,6 @@ theme:
 
 order:
   - Introduction
-  - Webservices
+  - Webservices produits
+  - Webservices commandes
   - Wrappers

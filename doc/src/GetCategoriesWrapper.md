@@ -1,6 +1,6 @@
 ---
 name: 3. GetCategories
-category: Webservices
+category: Webservices produits
 ---
 
 

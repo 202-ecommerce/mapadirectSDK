@@ -1,6 +1,6 @@
 ---
 name: 6. UpdateProduct
-category: Webservices
+category: Webservices produits
 ---
 
 

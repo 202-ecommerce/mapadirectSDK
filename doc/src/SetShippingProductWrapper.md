@@ -1,6 +1,6 @@
 ---
 name: 8. SetShippingProduct
-category: Webservices
+category: Webservices produits
 ---
 
 

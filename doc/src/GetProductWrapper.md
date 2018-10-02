@@ -1,6 +1,6 @@
 ---
 name: 5. GetProduct
-category: Webservices
+category: Webservices produits
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 name: 7. DeleteProduct
-category: Webservices
+category: Webservices produits
 ---
 
 
