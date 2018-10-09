@@ -1,6 +1,6 @@
 ---
 name: 4. AddProduct
-category: Webservices
+category: Webservices produits
 ---
 
 

@@ -9,16 +9,16 @@
  * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
 
-use MapaDirectSDK\Wrappers\MDApiWrapperGetTaxes;
+use MapaDirectSDK\Wrappers\MDApiWrapperPing;
 use PHPUnit\Framework\TestCase;
 
-class MDApiWrapperGetTaxesTest extends TestCase
+class MDApiWrapperPingTest extends TestCase
 {
 
     public function testGetSet()
     {
-        $wrapper = new MDApiWrapperGetTaxes();
-        $this->assertEquals('/taxes', $wrapper->getURI());
+        $wrapper = new MDApiWrapperPing();
+        $this->assertEquals('/ping', $wrapper->getURI());
         $this->assertEquals('GET', $wrapper->getMethod());
     }
 

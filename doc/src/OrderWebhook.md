@@ -28,7 +28,7 @@ Corps de la requète (exemple) :
 
 ```application/json
 {
-    id: 123456,
+    "id": 123456,
     "taxExclusiveAmount": 121.76,
     "taxInclusiveAmount": 146.11,
     "legalMonetaryTotal": {
@@ -42,31 +42,31 @@ Corps de la requète (exemple) :
         "totalTaxAmount": 2.5,
         "VATRate": 20
     },
-    timestamp: 1532092031,
-    status: "EMITTED",
-    siretNumber: "19781123300010",
-    paymentMethod: "",
-    shippingAddress: {
-        company: "LYCEE DE VILLAROY",
-        contactFullName: "Patricia Jeannot",
-        contactPhone: customer.contact.telephone,
-        address: "2 RUE EUGENE RAFFIN",
-        address2: "",
-        city: "GUYANCOURT",
-        zipcode: "78280",
-        country: "FR"
+    "timestamp": 1532092031,
+    "status": "EMITTED",
+    "siretNumber": "19781123300010",
+    "paymentMethod": "",
+    "shippingAddress": {
+        "company": "LYCEE DE VILLAROY",
+        "contactFullName": "Patricia Jeannot",
+        "contactPhone": "0123456789",
+        "address": "2 RUE EUGENE RAFFIN",
+        "address2": "",
+        "city": "GUYANCOURT",
+        "zipcode": "78280",
+        "country": "FR"
     },
-    billingAddress: {
-        company: "LYCEE DE VILLAROY",
-        contactFullName: "Patricia Jeannot",
-        contactPhone: "0123456789",
-        address: "2 RUE EUGENE RAFFIN",
-        address2: "",
-        city: "GUYANCOURT",
-        zipcode: "78280",
-        country: "FR"
+    "billingAddress": {
+        "company": "LYCEE DE VILLAROY",
+        "contactFullName": "Patricia Jeannot",
+        "contactPhone": "0123456789",
+        "address": "2 RUE EUGENE RAFFIN",
+        "address2": "",
+        "city": "GUYANCOURT",
+        "zipcode": "78280",
+        "country": "FR"
     },
-    items: [
+    "items": [
         {
           "name": "Cordon RJ45 catégorie 5e F/UTP jaune - 3 m",
           "quantity": 1,

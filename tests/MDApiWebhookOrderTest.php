@@ -2,24 +2,11 @@
 /**
  * NOTICE OF LICENSE
  *
- * This source file is subject to a commercial license from SARL 202 ecommence
- * Use, copy, modification or distribution of this source file without written
- * license agreement from the SARL 202 ecommence is strictly forbidden.
- * In order to obtain a license, please contact us: tech@202-ecommerce.com
- * ...........................................................................
- * INFORMATION SUR LA LICENCE D'UTILISATION
- *
- * L'utilisation de ce fichier source est soumise a une licence commerciale
- * concedee par la societe 202 ecommence
- * Toute utilisation, reproduction, modification ou distribution du present
- * fichier source sans contrat de licence ecrit de la part de la SARL 202 ecommence est
- * expressement interdite.
- * Pour obtenir une licence, veuillez contacter 202-ecommerce <tech@202-ecommerce.com>
- * ...........................................................................
+ * This source file is subject to the Open Software License (OSL 3.0)
  *
  * @author    202-ecommerce <tech@202-ecommerce.com>
  * @copyright Copyright (c) 202-ecommerce
- * @license   Commercial license
+ * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
  */
 
 use PHPUnit\Framework\TestCase;
@@ -42,7 +29,7 @@ class MDApiWebhookOrderTest extends TestCase
         try {
             $wrapper->process();
         } catch (WebhookErrorException $e) {
-            $this->assertEquals('{"message":"Error with hash"}', $e->sendResponse());
+            $this->assertEquals('{"success":false,"message":"Error with hash"}', $e->sendResponse());
         }
     }
 
@@ -56,7 +43,7 @@ class MDApiWebhookOrderTest extends TestCase
         try {
             $wrapper->process();
         } catch (WebhookPingException $e) {
-            $this->assertEquals('{"message":"Ping OK"}', $e->sendResponse());
+            $this->assertEquals('{"success":true,"message":"Ping OK"}', $e->sendResponse());
         }
     }
 
@@ -70,7 +57,7 @@ class MDApiWebhookOrderTest extends TestCase
         try {
             $wrapper->process();
         } catch (WebhookErrorException $e) {
-            $this->assertEquals('{"message":"State mismatch (invalid or malformed JSON)"}', $e->sendResponse());
+            $this->assertEquals('{"success":false,"message":"State mismatch (invalid or malformed JSON)"}', $e->sendResponse());
         }
     }
 

@@ -14,9 +14,9 @@ namespace MapaDirectSDK\Wrappers;
 use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
 
 /**
- * @desc: API Client
+ * @desc: MDApiWrapperPing
  */
-class MDApiWrapperGetCategories extends MDApiWrapperAbstract implements MDApiWrapperInterface
+class MDApiWrapperPing extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-    protected $uri = '/catalog/categories/tree';
+    protected $uri = '/ping';
 }

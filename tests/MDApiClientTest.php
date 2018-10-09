@@ -1,4 +1,13 @@
 <?php
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ *
+ * @author    202-ecommerce <tech@202-ecommerce.com>
+ * @copyright Copyright (c) 202-ecommerce
+ * @license   https://opensource.org/licenses/OSL-3.0 Open Software License (OSL 3.0)
+ */
 
 use PHPUnit\Framework\TestCase;
 use MapaDirectSDK\MDApiClient;
@@ -64,4 +73,36 @@ class MDApiClientTest extends TestCase
         $this->clientMD->setResponse($responseMD);
         $this->assertEquals($responseMD, $this->clientMD->getResponse());
     }
+
+
+    public function testPing()
+    {
+
+        $wrapper = MDApiClient::getWrapper('Auth');
+        $wrapper->setCredentials('tech+mapa_jacky@202-ecommerce.com:xxx');
+        $wrapper->setSiret('20220220220220');
+        $wrapper->setWebHookUrl('https://www.202-ecommerce.com/');
+        $wrapper->setWebHookHash('488e7cafd8fc88f386ba2a88574a7f35');
+
+        $client = new MDApiClient();
+        $client->call($wrapper);
+        $success = $client->getResponse()->isSuccess();
+        $this->assertfalse($success);
+
+/*
+        $data = $client->getResponse()->getContent();
+        $wrapper = MDApiClient::getWrapper('Ping');
+        $wrapper->setToken($data['apiKey']);
+        $wrapper->setSiret('20220220220220');
+
+        $client = new MDApiClient();
+        if (!$client->call($wrapper)) {
+            // webhook non disponible
+        }
+        $data = $client->getResponse()->getContent();
+
+        print_r($data);
+        * */
+    }
+
 }
