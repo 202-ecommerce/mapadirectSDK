@@ -18,8 +18,8 @@ class MDApiWrapperPingTest extends TestCase
     public function testGetSet()
     {
         $wrapper = new MDApiWrapperPing();
-        $this->assertEquals('/ping', $wrapper->getURI());
-        $this->assertEquals('GET', $wrapper->getMethod());
+        $this->assertEquals('/webhook/ping', $wrapper->getURI());
+        $this->assertEquals('POST', $wrapper->getMethod());
     }
 
 }

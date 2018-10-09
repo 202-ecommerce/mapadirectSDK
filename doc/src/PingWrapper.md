@@ -48,15 +48,13 @@ Corps de la réponse :
 ```php
 use MapaDirectSDK\MDApiClient;
 
-$wrapper = MDApiClient::getWrapper('ping');
+$wrapper = MDApiClient::getWrapper('Ping');
 $wrapper->setToken(AUTH_TOKEN);
 $wrapper->setSiret(SIRET);
 
 $client = new MDApiClient();
-if (!$client->call($wrapper)) {
-    // webhook non disponible
-}
-$data = $client->getResponse()->getContent();
+$client->call($wrapper);
+$success = $client->getResponse()->isSuccess();
 ```
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.

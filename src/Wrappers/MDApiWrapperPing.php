@@ -18,5 +18,8 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
  */
 class MDApiWrapperPing extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-    protected $uri = '/ping';
+    protected $uri = '/webhook/ping';
+
+    protected $method = 'POST';
+
 }

@@ -87,22 +87,20 @@ class MDApiClientTest extends TestCase
         $client = new MDApiClient();
         $client->call($wrapper);
         $success = $client->getResponse()->isSuccess();
-        $this->assertfalse($success);
-
-/*
+        $this->assertFalse($success);
+        /**
         $data = $client->getResponse()->getContent();
         $wrapper = MDApiClient::getWrapper('Ping');
         $wrapper->setToken($data['apiKey']);
         $wrapper->setSiret('20220220220220');
 
         $client = new MDApiClient();
-        if (!$client->call($wrapper)) {
-            // webhook non disponible
-        }
+        $client->call($wrapper);
+        $success = $client->getResponse()->isSuccess();
         $data = $client->getResponse()->getContent();
-
-        print_r($data);
-        * */
+        //print_r($data);
+        $this->assertTrue($success);
+        */
     }
 
 }
