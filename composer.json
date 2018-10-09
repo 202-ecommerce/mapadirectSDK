@@ -1,7 +1,8 @@
 {
   "name": "mapadirect/mapadirectsdk",
   "description": "SDK to use Mapadirect API",
-    "type": "library",
+  "type": "library",
+  "license": "MIT",
   "authors": [
     {
       "name": "202-ecommerce",
