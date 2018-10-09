@@ -14,6 +14,7 @@ namespace MapaDirectSDK;
 use MapaDirectSDK\MDApiResponse;
 use MapaDirectSDK\Wrappers\MDApiWrapperAuth;
 use MapaDirectSDK\Wrappers\MDApiWrapperAddProduct;
+use MapaDirectSDK\Wrappers\MDApiWrapperSetInvoiceData;
 use MapaDirectSDK\Wrappers\MDApiWrapperUpdateProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperSetShippingProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperDeleteProduct;
@@ -40,6 +41,7 @@ class MDApiClient
         'GetTaxes'           => MDApiWrapperGetTaxes::class,
         'GetProduct'         => MDApiWrapperGetProduct::class,
         'Ping'               => MDApiWrapperPing::class,
+        'SetInvoiceData'     => MDApiWrapperSetInvoiceData::class,
     );
 
     private $url;
