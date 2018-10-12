@@ -19,7 +19,7 @@ Method: POST
 Authorization: token a_secret_path_phrase_to_authenticate_the_webhook
 ```
 
-_Le corps de la requète sera envoyé vide._
+_Le corps de la requète sera envoyé vide `{}`._
 
 
 

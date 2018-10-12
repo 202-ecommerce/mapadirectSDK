@@ -36,11 +36,13 @@ Corps de la réponse :
 ```application/json
 [
     {
-        "message": "Réponse du webhook"
+        "statusCode": "200",
+        "body": "Corps de la réponse du webhook",
+        "header": ['headers de la réponse'],
+        "request": ['headers de la requète sur le webhook'],
     }
 ]
 ```
-
 
 
 ### Exemple ###

@@ -57,6 +57,9 @@ class WebhookOrder
         if ($error) {
             throw new WebhookErrorException(json_last_error_msg());
         }
+        if (empty($this->data)) {
+            throw new WebhookPingException('Ping OK');
+        }
 
         return true;
     }
