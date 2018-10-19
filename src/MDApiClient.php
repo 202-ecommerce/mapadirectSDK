@@ -181,7 +181,7 @@ class MDApiClient
         $httpsCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
         curl_close($this->ch);
 
-        $message .= 'Request:' . " \r\n";
+        $message = 'Request:' . " \r\n";
         $message .= 'URI: ' . $this->wrapper->getUri() . " \r\n";
         $message .= 'Header: ' . print_r($this->wrapper->getHeaders(), true) . " \r\n";
         $message .= 'Body: ' . print_r($this->wrapper->getInput(), true) . " \r\n";
