@@ -23,13 +23,14 @@ use MapaDirectSDK\Wrappers\MDApiWrapperGetTaxes;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperPing;
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
+use MapaDirectSDK\Logger\MDApiLogger;
 
 /**
  * @desc: API Client
  */
 class MDApiClient
 {
-    const DEFAULT_URL = 'https://sandbox.mapadirect.fr/marketplace/connectors/v1';
+    const DEFAULT_URL = 'https://sandbox.mapadirect.fr/marketplace/connectors';
 
     const WRAPPER = array(
         'Auth'               => MDApiWrapperAuth::class,
@@ -59,11 +60,17 @@ class MDApiClient
     private $wrapper;
 
     /**
+     * @var MDApiLogger $logger
+     */
+    private $logger;
+
+    /**
      * MDApiClient constructor.
      */
     public function __construct()
     {
         $this->url = (defined('MDAPI_URL')) ? MDAPI_URL : static::DEFAULT_URL;
+        $this->logger = new MDApiLogger();
     }
 
 
@@ -83,6 +90,19 @@ class MDApiClient
         }
 
         return new $wrappers[$wrapper];
+    }
+
+    /**
+     * @desc: set logger
+     * @param: MDApiLogger $logger
+     *
+     * @return $this
+     */
+    public function setLogger(MDApiLogger $logger)
+    {
+        $this->logger = $logger;
+
+        return $this;
     }
 
     /**
@@ -160,6 +180,17 @@ class MDApiClient
         $content = curl_exec($this->ch);
         $httpsCode = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
         curl_close($this->ch);
+
+        $message .= 'Request:' . " \r\n";
+        $message .= 'URI: ' . $this->wrapper->getUri() . " \r\n";
+        $message .= 'Header: ' . print_r($this->wrapper->getHeaders(), true) . " \r\n";
+        $message .= 'Body: ' . print_r($this->wrapper->getInput(), true) . " \r\n";
+        $message .= 'Response: ***' . " \r\n";
+        $message .= 'Status: ' . $httpsCode ." \r\n";
+        $message .= 'Body: ' . $content;
+        $wrappers = array_flip(static::WRAPPER);
+        $this->logger->write('info', $message, $wrappers[get_class($this->wrapper)]);
+
         if ($httpsCode == 200) {
             $this->response = new MDApiResponse('success');
             $this->wrapper->parseResponse($this->response, $content);
