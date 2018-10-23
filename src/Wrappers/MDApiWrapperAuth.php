@@ -38,7 +38,15 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
     public function check()
     {
         if (empty($this->credentials)) {
-            return false;
+            $this->errors[] = 'L\'identifiant ou le mot de passe est invalide.';
+        }
+        if (empty($this->webHookHash) ||
+                strlen($this->webHookHash) > 64) {
+            $this->errors[] = 'Le webhookHash doit être envoyé à l\'API en header de la requète et faire moins de 64 caractères.';
+        }
+        if (empty($this->webHookUrl) ||
+                filter_var($this->webHookUrl, FILTER_VALIDATE_URL) == false) {
+            $this->errors[] = 'Le webHookUrl doit être envoyé à l\'API en header de la requète et être une URL valide.';
         }
 
         return parent::check();

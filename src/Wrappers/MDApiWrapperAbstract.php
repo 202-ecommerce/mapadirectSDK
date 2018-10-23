@@ -12,6 +12,7 @@
 namespace MapaDirectSDK\Wrappers;
 
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
+use MapaDirectSDK\Wrappers\MDApiWrapperValidator;
 use MapaDirectSDK\MDApiResponse;
 
 /**
@@ -33,6 +34,8 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
 
     protected $siret;
 
+    protected $errors = array();
+
     /**
      * @param string $credentials
      * @return $this
@@ -50,6 +53,14 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     public function getCredentials()
     {
         return $this->credentials;
+    }
+
+    /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 
     /**
@@ -110,7 +121,12 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
      */
     public function check()
     {
-        if (empty($this->siret)) {
+        if (empty($this->siret) ||
+                MDApiWrapperValidator::isSiret($this->siret) == false) {
+            $this->errors[] = 'Le SIRET est invalide.';
+        }
+
+        if (empty($this->errors) == false) {
             return false;
         }
 

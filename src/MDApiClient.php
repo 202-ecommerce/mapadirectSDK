@@ -23,6 +23,7 @@ use MapaDirectSDK\Wrappers\MDApiWrapperGetTaxes;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperPing;
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
+use MapaDirectSDK\Wrappers\MDApiWrapperValidatorException;
 use MapaDirectSDK\Logger\MDApiLogger;
 
 /**
@@ -63,6 +64,11 @@ class MDApiClient
      * @var MDApiLogger $logger
      */
     private $logger;
+
+    /**
+     * @var array $errors
+     */
+    private $errors = array();
 
     /**
      * MDApiClient constructor.
@@ -127,6 +133,14 @@ class MDApiClient
     }
 
     /**
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
      * @desc: call a webservice
      * @param MDApiWrapperInterface $wrapper
      * @return bool
@@ -138,8 +152,12 @@ class MDApiClient
         if ($this->wrapper->check()) {
             return $this->send();
         } else {
-            throw new \Exception('Please verify the configuration of your wrapper.
-            Did you forget to set credential or input data ?');
+            $this->errors = $this->wrapper->getErrors();
+            $message = print_r($this->wrapper->getErrors(), true);
+            $wrappers = array_flip(static::WRAPPER);
+            $this->logger->write('error', $message, $wrappers[get_class($this->wrapper)]);
+            throw new MDApiWrapperValidatorException('Erreur de validation des données');
+            return false;
         }
     }
 

@@ -29,6 +29,14 @@ X-WEBHOOKHASH: a_secret_path_phrase_to_authenticate_the_webhook
 
 L'authentification est établie à partir de l'identifiant / mot de passe du marchand sur la marketplace MapaDirect.
 
+Liste des validateur inclus dans le SDK
+
+| Champs | Message |
+| ------ | ------ |
+| X-SIRET | Le siret est obligatoire et être un chiffre de 14 caractères |
+| X-WEBHOOKURL | L'URL du webhook doit être une URL valide au sens du filtre PHP [FILTER_VALIDATE_URL](http://php.net/manual/en/filter.filters.validate.php)|
+| X-WEBHOOKHASH | Le siret est obligatoire et être une chaine de caractère de moins de 64 caractères. |
+
 L'enveloppe de la réponse est établie en json.
 
 HTTP header de réponse :
@@ -49,20 +57,30 @@ Messages d'erreur :
 ```php
 use MapaDirectSDK\MDApiClient;
 
+$client = new MDApiClient();
+$client->call($wrapper);
+
 $wrapper = MDApiClient::getWrapper('Auth');
 $wrapper->setCredentials('you.marchand.email@domain.tld:password');
 $wrapper->setSiret('20220220220220');
 $wrapper->setWebHookUrl('https://you-shop-domain.tld/module/mapadirect/ordersSync');
 $wrapper->setWebHookHash('488e7cafd8fc88f386ba2a88574a7f35');
 
-$client = new MDApiClient();
-$client->call($wrapper);
+try {
+    $client->call($wrapper);
+} catch (MDApiWrapperValidatorException $e) {
+    // Liste des erreurs retournées par le SDK
+    $client->getErrors();
+}
+
 $data = $client->getResponse()->getContent();
 if ($client->getResponse()->isSuccess()) {
     $idMarchand = $data['id'];
     $apiKey = $data['apiKey'];
     // store API_key somewhere like in a database
 } else {
+    // Liste des erreurs retourné par l'API MapaDirect
     $error = $data['message'];
 }
+
 ```
