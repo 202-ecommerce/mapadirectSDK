@@ -37,7 +37,6 @@ Corps de la requète :
         {
             "amount": 0,
             "value": 3.99
-
         },
         {
             "amount": 1,
@@ -47,9 +46,16 @@ Corps de la requète :
 }
 ```
 
-Statuts des frais d'expédition :
-* A: frais d'expédition activé
-* D: frais d'expédition désactivé
+Liste des validateurs inclus dans le SDK
+
+| Champs | Message |
+| ------ | ------ |
+| X-SIRET (envoyé en header) | Le siret est obligatoire et être un chiffre de 14 caractères. |
+| status | Le statut des frais d'expédition est obligatoire et doit être l'une des valeurs suivantes : A (activé) D (désactivé). |
+| rates.0.amount | La valeur amount doit valoir 0 prix pour le premier article envoyé. |
+| rates.0.value | La valeur des frais de port pour le premier article envoyé doit être un chiffre décimal et s'entend HT. |
+| rates.1.amount | La valeur amount doit valoir 2 prix pour le premier article envoyé. |
+| rates.1.value | La valeur des frais de port à partir du deuxième article envoyé doit être un chiffre décimal et s'entend HT. |
 
 HTTP header de réponse :
 
@@ -111,8 +117,20 @@ $wrapper->setId($productId);
 $wrapper->setInput($productShipping);
 
 $client = new MDApiClient();
-$client->call($wrapper);
-$data = $client->getResponse()->getContent();
+try {
+    $client->call($wrapper);
+} catch (MDApiWrapperValidatorException $e) {
+    // Liste des erreurs retournées par le SDK
+    $client->getErrors();
+    exit;
+}
+
+if ($client->getResponse()->isSuccess()) {
+    $data = $client->getResponse()->getContent();
+} else {
+    // Désolé mais l'API retour une erreur 500...
+    // c'est pourquoi nous avons mis en place un validateur très strict dans ce SDK avec tous les cas d'erreur connu.
+}
 ```
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.

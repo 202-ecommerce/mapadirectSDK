@@ -101,6 +101,8 @@ HTTP header de réponse (que vous devez retourner) :
 | 409 | The order has already been processed |
 | 50x | Internal Server |
 
+*Attention* : les redirections 301 ou 302 ne sont pas suivies !
+
 Liste des status de commande :
 
 | Statut | Commentaire |
@@ -111,6 +113,7 @@ Liste des status de commande :
 | EMITTED | La facture a été générée et dématérialisée. |
 | TOTALLYPAID | La facture a été payée (entièrement). |
 | ERROR | Commande rejetée, a priori non envoyé car non géré pour l'instant |
+
 
 
 ### Exemple ###
@@ -132,7 +135,7 @@ try {
 
     // create or update the order
 } catch (\Exception $e) {
-    if ($e instanceof WebhookPingException || $e WebhookErrorException BError) {
+    if ($e instanceof WebhookPingException || $e instanceof WebhookErrorException) {
         echo $e->sendResponse();
         exit;
     }

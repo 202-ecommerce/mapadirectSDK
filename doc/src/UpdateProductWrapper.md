@@ -26,36 +26,21 @@ Corps de la requète :
 
 ```application/json
 {
-    "product_code": "4006381333933",
-    "product_template_type": "service",
-    "infinite_stock": null,
-    "supplier_ref": "abcdef",
+    "product_id": "12345",
     "product": "Very comfortable chair.",
+    "product_code": "4006381333933",
+    "infinite_stock": null,
     "status": "A",
     "main_category": 456,
     "green_tax": 0.45,
-    "condition": "N",
     "free_shipping": "N",
-    "weight": 0,
-    "is_edp": "N",
-    "affiliate_link": "string",
-    "main_pair":
-    {
-        "detailed": {}
-    },
-    "full_description": "<p>This is a long product description.</p>",
-    "short_description": "<p>This is a short product description.</p>",
-    "tax_ids":
-    [
-        0
+    "tax_ids": [
+        "0": 5
     ],
-    "inventory":
-    [
+    "inventory": [
         {
-        "combination":
-            {
-                "123": 456,
-                "789": 101
+            "combination": {
+                "12": 1144
             },
             "amount": 5,
             "price": 48.4,
@@ -65,7 +50,26 @@ Corps de la requète :
 }
 ```
 
-NB : product_code correspond à l'EAN du produit.
+Liste des validateurs inclus dans le SDK
+
+| Champs | Message |
+| ------ | ------ |
+| X-SIRET (envoyé en header) | Le siret est obligatoire et être un chiffre de 14 caractères |
+| product_id | L'identifiant MapaDirect du produit est obligatoire et doit être un entier naturel en positif. |
+| product | Le titre du produit est obligatoire. |
+| product_code | Le code produit est obligatoire et être un EAN13 valide. |
+| infinite_stock | Le stock infini est obligatoire et doit être l'une des valeurs suivantes : Y (yes) ou N (No). |
+| status | Le statut du produit est obligatoire et doit être l'une des valeurs suivantes : A (available) H (hidden) D (disabled). |
+| inventory.amount | La quantité en stock doit être un entier naturel en positif. |
+| inventory.price | Le prix s'entend HT, est obligatoire et doit être un nombre décimal. |
+| inventory.combination | Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef le champs company_id (*) et pour valeur la main_category. Exemple : combination => [12 => 1144] |
+| inventory.combination_code | Le code produit est obligatoire et être un EAN13 valide. |
+| green_tax | L'éco participation devra être inclus dans le prix HT (champs price) et sera affiché sur la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal. |
+| tax_ids | La TVA est obligatoire et doit être indiquée sous forme de tableau ayant pour valeur l'identifiant de la Taxe. Exemple poru la TAV à 20% : tax_ids => [0 => 5] |
+| main_category | La categorie est obligatoire et doit être entier naturel positif correspondant à une categorie MapaDirect. |
+| free_shipping | La gratuité des frais de port pour un produit est obligatoire et doit être l'une des valeurs suivantes : Y (yes) ou N (No) |
+
+(*) le company_id est votre identifiant retourné dans lors de l'authentification.
 
 L'enveloppe de la réponse est établie en json.
 
@@ -80,52 +84,7 @@ Corps de la réponse :
 
 ```application/json
 {
-
-    "product_id": 0,
-    "product_code": "4006381333933",
-    "product_template_type": "service",
-    "infinite_stock": null,
-    "supplier_ref": "abcdef",
-    "product": "Very comfortable chair.",
-    "status": "A",
-    "approved": "Y",
-    "timestamp": 1500363711,
-    "updated_timestamp": 1500364328,
-    "company_id": 123,
-    "main_category": 456,
-    "green_tax": 0.45,
-    "condition": "N",
-    "geolocation": {},
-    "free_features":
-    {
-        "color": "blue",
-        "wifi": true,
-        "hdmiPorts": 1
-    },
-    "free_shipping": "N",
-    "weight": 0,
-    "is_edp": "N",
-    "affiliate_link": "string",
-    "attachments": [],
-    "main_pair": {},
-    "image_pairs": [],
-    "full_description": "<p>This is a long product description.</p>",
-    "short_description": "<p>This is a short product description.</p>",
-    "tax_ids": [
-        0
-    ],
-    "allowed_options_variants":[],
-    "inventory":
-    [
-
-        {
-            "combination": {},
-            "amount": 5,
-            "price": 48.4,
-            "combination_code": "4006381333933"
-        }
-    ]
-
+    "product_id": 12345
 }
 ```
 
@@ -135,28 +94,47 @@ Corps de la réponse :
 ```php
 use MapaDirectSDK\MDApiClient;
 
-$productId = 123;
+$productId = 12345;
 $product = [
-    'product_code' => '1234565410333',
-    'product' => 'test2',
-    'status' => 'A',
-    'green_tax' => 1,
-    'price' => 10,
-    'amount' => 1,
-    'main_category' => 1932,
-    'tax_ids' => 1,
     'product_id' => $productId
+    'product_code' => '1234565410333',
+    'product' => 'Very comfortable chair',
+    'infinite_stock' => 0,
+    'status' => 'A',
+    'green_tax' => 0.99,
+    'free_shipping' => 'N',
+    'main_category' => 1932,
+    'tax_ids' => [5],
+    'inventory' => [
+        'amount' => '123',
+        'price' => 15.0000,
+        'combination' => [12 => 1244],
+        'combination_code' => '1234565410333',
+    ]
 ];
 
-$wrapper = MDApiClient::getWrapper('AddProduct');
+$wrapper = MDApiClient::getWrapper('UpdateProduct');
 $wrapper->setToken($apiKey);
 $wrapper->setSiret($siret);
 $wrapper->setId($productId);
 $wrapper->setInput($product);
 
 $client = new MDApiClient();
-$client->call($wrapper);
+try {
+    $client->call($wrapper);
+} catch (MDApiWrapperValidatorException $e) {
+    // Liste des erreurs retournées par le SDK
+    $client->getErrors();
+    exit;
+}
+
 $data = $client->getResponse()->getContent();
+if ($client->getResponse()->isSuccess()) {
+    $data = $client->getResponse()->getContent();
+} else {
+    // Désolé mais l'API retour une erreur 500...
+    // c'est pourquoi nous avons mis en place un validateur très strict dans ce SDK avec tous les cas d'erreur connu.
+}
 ```
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.

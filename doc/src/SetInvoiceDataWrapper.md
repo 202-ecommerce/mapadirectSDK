@@ -31,7 +31,13 @@ Corps de la requète :
 }
 ```
 
-NB : product_code correspond à l'EAN du produit.
+Liste des validateurs inclus dans le SDK
+
+| Champs | Message |
+| ------ | ------ |
+| X-SIRET (envoyé en header) | Le siret est obligatoire et être un chiffre de 14 caractères. |
+| invoiceNumber | Le numéro de facture est obligatoire et disposer d'au moins un chiffre. |
+| invoiceDate | Le date de la facture est obligatoire être au format ISO 8601. |
 
 L'enveloppe de la réponse est établie en json.
 
@@ -78,8 +84,20 @@ $wrapper->setId($orderId);
 $wrapper->setInput($invoice);
 
 $client = new MDApiClient();
-$client->call($wrapper);
-$data = $client->getResponse()->getContent();
+try {
+    $client->call($wrapper);
+} catch (MDApiWrapperValidatorException $e) {
+    // Liste des erreurs retournées par le SDK
+    $client->getErrors();
+    exit;
+}
+
+if ($client->getResponse()->isSuccess()) {
+    $data = $client->getResponse()->getContent();
+} else {
+    $data = $client->getResponse()->getContent();
+    // Liste des erreurs retournées par l'API
+}
 ```
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.
