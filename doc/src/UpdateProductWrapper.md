@@ -58,7 +58,7 @@ Liste des validateurs inclus dans le SDK
 | product_id | L'identifiant MapaDirect du produit est obligatoire et doit être un entier naturel en positif. |
 | product | Le titre du produit est obligatoire. |
 | product_code | Le code produit est obligatoire et être un EAN13 valide. |
-| infinite_stock | Le stock infini est obligatoire et doit être l'une des valeurs suivantes : Y (yes) ou N (No). |
+| infinite_stock | Le stock infini est obligatoire et doit être un booléen. |
 | status | Le statut du produit est obligatoire et doit être l'une des valeurs suivantes : A (available) H (hidden) D (disabled). |
 | inventory.amount | La quantité en stock doit être un entier naturel en positif. |
 | inventory.price | Le prix s'entend HT, est obligatoire et doit être un nombre décimal. |
