@@ -37,8 +37,9 @@ class MDApiWrapperSetShippingProduct extends MDApiWrapperAbstract implements MDA
         }
 
         if (!isset($this->input['status']) ||
-            !in_array($this->input['status'],array("A", "D"))) {
-            $this->errors[] = 'Le statut des frais d\'expédition est obligatoire et doit être l\'une des valeurs suivantes : A (activé) D (désactivé).';
+            !in_array($this->input['status'], array("A", "D"))) {
+            $this->errors[] = 'Le statut des frais d\'expédition est obligatoire et doit être l\'une des valeurs 
+            suivantes : A (activé) D (désactivé).';
         }
 
         if (!isset($this->input['rates'][0]['amount']) ||
@@ -47,7 +48,8 @@ class MDApiWrapperSetShippingProduct extends MDApiWrapperAbstract implements MDA
         }
         if (!isset($this->input['rates'][0]['value']) ||
             !is_numeric($this->input['rates'][0]['value'])) {
-            $this->errors[] = 'La valeur des frais de port pour le premier article envoyé doit être un chiffre décimal et s\'entend HT.';
+            $this->errors[] = 'La valeur des frais de port pour le premier article envoyé doit être un chiffre décimal 
+            et s\'entend HT.';
         }
 
         if (!isset($this->input['rates'][1]['amount']) ||
@@ -56,7 +58,8 @@ class MDApiWrapperSetShippingProduct extends MDApiWrapperAbstract implements MDA
         }
         if (!isset($this->input['rates'][1]['value']) ||
             !is_numeric($this->input['rates'][1]['value'])) {
-            $this->errors[] = 'La valeur des frais de port à partir du deuxième article envoyé doit être un chiffre décimal et s\'entend HT.';
+            $this->errors[] = 'La valeur des frais de port à partir du deuxième article envoyé doit être un chiffre 
+            décimal et s\'entend HT.';
         }
         return parent::check();
     }

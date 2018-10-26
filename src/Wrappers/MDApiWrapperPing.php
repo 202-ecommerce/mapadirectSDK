@@ -21,5 +21,4 @@ class MDApiWrapperPing extends MDApiWrapperAbstract implements MDApiWrapperInter
     protected $uri = '/webhook/ping';
 
     protected $method = 'POST';
-
 }

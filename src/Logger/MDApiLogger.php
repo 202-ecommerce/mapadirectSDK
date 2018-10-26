@@ -26,5 +26,4 @@ class MDApiLogger
     public function write($level = 'info', $message = '', $wrapper = '')
     {
     }
-
 }

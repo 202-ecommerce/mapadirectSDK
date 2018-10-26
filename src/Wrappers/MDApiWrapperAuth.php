@@ -42,7 +42,8 @@ class MDApiWrapperAuth extends MDApiWrapperAbstract implements MDApiWrapperInter
         }
         if (empty($this->webHookHash) ||
                 strlen($this->webHookHash) > 64) {
-            $this->errors[] = 'Le webhookHash doit être envoyé à l\'API en header de la requète et faire moins de 64 caractères.';
+            $this->errors[] = 'Le webhookHash doit être envoyé à l\'API en header de la requète 
+            et faire moins de 64 caractères.';
         }
         if (empty($this->webHookUrl) ||
                 filter_var($this->webHookUrl, FILTER_VALIDATE_URL) == false) {

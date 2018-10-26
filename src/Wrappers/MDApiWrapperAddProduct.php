@@ -38,13 +38,14 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
         }
 
         if (!isset($this->input['status']) ||
-            !in_array($this->input['status'],array("H", "A", "D"))) {
-            $this->errors[] = 'Le statut du produit est obligatoire et doit être l\'une des valeurs suivantes : A (available) H (hidden) D (disabled).';
+            !in_array($this->input['status'], array("H", "A", "D"))) {
+            $this->errors[] = 'Le statut du produit est obligatoire et doit être l\'une des valeurs suivantes :
+             A (available) H (hidden) D (disabled).';
         }
 
         if (!isset($this->input['inventory']['price']) ||
             !is_numeric($this->input['inventory']['price'])) {
-            $this->errors[] = ' Le prix s\'entend HT, est obligatoire et doit être un nombre décimal. ';
+            $this->errors[] = ' Le prix s\'entend HT, est obligatoire et doit être un nombre décimal.';
         }
 
         if (!isset($this->input['inventory']['amount']) ||
@@ -65,8 +66,8 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
 
         if (!isset($this->input['inventory']['green_tax']) ||
             !is_float($this->input['inventory']['green_tax'])) {
-            $this->errors[] =  'L\'éco participation devra être inclus dans le prix HT (champs price) et sera affiché sur 
-            la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal. ';
+            $this->errors[] =  'L\'éco participation devra être inclus dans le prix HT (champs price) et sera 
+            affiché sur la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal. ';
         }
 
         if (!isset($this->input['inventory']['tax_ids']) ||
@@ -77,7 +78,8 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
 
         if (!isset($this->input['inventory']['main_category']) ||
             !is_int($this->input['inventory']['main_category'])) {
-            $this->errors[] = 'La categorie est obligatoire et doit être entier naturel positif correspondant à une categorie MapaDirect.';
+            $this->errors[] = 'La categorie est obligatoire et doit être entier naturel positif correspondant 
+            à une categorie MapaDirect.';
         }
 
         if (!isset($this->input['inventory']['free_shipping']) ||
