@@ -24,7 +24,9 @@
 
 namespace MapaDirectSDK\Wrappers;
 
+use foo\bar;
 use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
+use MapaDirectSDK\Wrappers\MDApiWrapperValidator;
 
 /**
  * @desc: API Client
@@ -42,11 +44,17 @@ class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWr
     public function check()
     {
         if (empty($this->id)) {
-            return false;
+            $this->errors[] = 'L\'id_order est obligatoire.';
         }
 
-        if (empty($this->input)) {
-            return false;
+        if (!isset($this->input['invoiceNumber']) ||
+            empty($this->input['invoiceNumber'])) {
+            $this->errors[] = ' Le numéro de facture est obligatoire et disposer d\'au moins un chiffre.';
+        }
+
+        if (!isset($this->input['invoiceDate']) ||
+            !MDApiWrapperValidator::validateDate($this->input['invoiceDate'])) {
+            $this->errors[] = ' Le date de la facture est obligatoire être au format ISO 8601.';
         }
 
         return parent::check();

@@ -123,7 +123,7 @@ abstract class MDApiWrapperAbstract implements MDApiWrapperInterface
     {
         if (empty($this->siret) ||
                 MDApiWrapperValidator::isSiret($this->siret) == false) {
-            $this->errors[] = 'Le SIRET est invalide.';
+            $this->errors[] = 'Le siret est obligatoire et être un chiffre de 14 caractères.';
         }
 
         if (empty($this->errors) == false) {

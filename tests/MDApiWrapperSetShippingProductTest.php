@@ -35,12 +35,33 @@ class MDApiWrapperSetShippingProductTest extends TestCase
     public function testCheck()
     {
         $wrapper = new MDApiWrapperSetShippingProduct();
-        $this->assertFalse($wrapper->check());
 
         $data = '52807584900042';
         $wrapper->setSiret($data);
-        $this->assertFalse($wrapper->check());
-        $wrapper->setId(123);
+        $wrapper->setId('123');
+
+        $productShipping = array(
+            "status" => "A",
+            "rates" => array(
+                array(
+                    "amount" => 0,
+                    "value" => 3.99
+
+                ), array(
+                    "amount" => 1,
+                    "value" => 1.99
+                )
+            )
+        );
+        $wrapper->setInput($productShipping);
         $this->assertTrue($wrapper->check());
+
+        unset($productShipping['status']);
+        $wrapper->setInput($productShipping);
+        $this->assertFalse($wrapper->check());
+
+        $productShipping['status'] = "G";
+        $wrapper->setInput($productShipping);
+        $this->assertFalse($wrapper->check());
     }
 }

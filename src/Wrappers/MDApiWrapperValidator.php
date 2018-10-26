@@ -38,10 +38,13 @@ class MDApiWrapperValidator
         // si son index (position dans la chaîne en commence à 0 au premier caractère) est pair
         // on double sa valeur et si cette dernière est supérieure à 9, on lui retranche 9
         // on ajoute cette valeur à la somme totale
+        $sum = 0;
         for ($index = 0; $index < 14; $index ++) {
             $number = (int) $siret[$index];
             if (($index % 2) == 0) {
-                if (($number *= 2) > 9) $number -= 9;
+                if (($number *= 2) > 9) {
+                    $number -= 9;
+                }
             }
             $sum += $number;
         }
@@ -71,6 +74,7 @@ class MDApiWrapperValidator
         // si son index (position dans la chaîne en commence à 0 au premier caractère) est impair
         // on triple sa valeur
         // on ajoute cette valeur à la somme totale
+        $sum = 0;
         for ($index = 0; $index < 12; $index ++) {
             $number = (int) $ean13[$index];
             if (($index % 2) != 0) {
@@ -86,6 +90,20 @@ class MDApiWrapperValidator
             return false;
         } else {
             return true;
+        }
+    }
+
+    public static function validateDate($date)
+    {
+        if (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.000Z$/', $date, $parts) == true) {
+            $time = gmmktime($parts[4], $parts[5], $parts[6], $parts[2], $parts[3], $parts[1]);
+
+            $input_time = strtotime($date);
+            if ($input_time === false) return false;
+
+            return $input_time == $time;
+        } else {
+            return false;
         }
     }
 }

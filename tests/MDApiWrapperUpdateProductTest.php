@@ -36,13 +36,38 @@ class MDApiWrapperUpdateProductTest extends TestCase
     public function testCheck()
     {
         $wrapper = new MDApiWrapperUpdateProduct();
-        $this->assertFalse($wrapper->check());
-
         $data = '52807584900042';
         $wrapper->setSiret($data);
-        $this->assertFalse($wrapper->check());
         $wrapper->setId(123);
+
+        $product = array(
+            'product_id' => 233345,
+            'product_code' => '3700688558929',
+            'product' => 'Very comfortable chair',
+            'status' => 'A',
+            'inventory' => array(
+                'amount' => 1,
+                'price' => 15.0,
+                'combination' => array(),
+                'combination_code' => '3700688558929',
+                'green_tax' => 1.0,
+                'tax_ids' => [1],
+                'main_category' => 1932,
+                'free_shipping' => 'Y',
+            ),
+            'infinite_stock' => 1
+
+        );
+        $wrapper->setInput($product);
         $this->assertTrue($wrapper->check());
+
+        $product['product_code'] = "ean13";
+        $wrapper->setInput($product);
+        $this->assertFalse($wrapper->check());
+
+        unset($product['product_id']);
+        $wrapper->setInput($product);
+        $this->assertFalse($wrapper->check());
     }
 
 }

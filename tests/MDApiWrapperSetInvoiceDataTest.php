@@ -30,19 +30,20 @@ class MDApiWrapperSetInvoiceDataTest extends TestCase
     public function testCheck()
     {
         $wrapper = new \MapaDirectSDK\Wrappers\MDApiWrapperSetInvoiceData();
-        $this->assertFalse($wrapper->check());
 
         $data = '52807584900042';
         $wrapper->setSiret($data);
-        $this->assertFalse($wrapper->check());
         $wrapper->setId(123);
-        $this->assertFalse($wrapper->check());
         $data = array(
             'invoiceNumber' => "132465",
             'invoiceDate' => "2018-06-07T17:56:00.000Z",
         );
         $wrapper->setInput($data);
         $this->assertTrue($wrapper->check());
+
+        $data['invoiceDate'] = "2018-06-07T17:56:00";
+        $wrapper->setInput($data);
+        $this->assertFalse($wrapper->check());
 
     }
 }

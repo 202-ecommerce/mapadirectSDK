@@ -16,7 +16,7 @@ use MapaDirectSDK\Wrappers\MDApiWrapperAbstract;
 /**
  * @desc API Client
  */
-class MDApiWrapperUpdateProduct extends MDApiWrapperAbstract implements MDApiWrapperInterface
+class MDApiWrapperUpdateProduct extends MDApiWrapperAddProduct implements MDApiWrapperInterface
 {
     protected $uri = '/products/';
 
@@ -27,8 +27,10 @@ class MDApiWrapperUpdateProduct extends MDApiWrapperAbstract implements MDApiWra
      */
     public function check()
     {
-        if (empty($this->id)) {
-            return false;
+
+        if (!isset($this->input['product_id']) ||
+            !is_int($this->input['product_id'])) {
+            $this->errors[] = 'Le champs product_id doit être un entier naturel positif.';
         }
 
         return parent::check();
