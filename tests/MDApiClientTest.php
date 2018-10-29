@@ -75,6 +75,39 @@ class MDApiClientTest extends TestCase
     }
 
 
+    public function testCallErrors()
+    {
+        $wrapper = MDApiClient::getWrapper('Auth');
+        $wrapper->setCredentials('tech+mapa_jacky@202-ecommerce.com:xxx');
+        $wrapper->setSiret('20220');
+        $this->assertFalse($wrapper->check());
+
+        $wrapper = MDApiClient::getWrapper('Auth');
+        $wrapper->setCredentials('tech+mapa_jacky@202-ecommerce.com:xxx');
+        $wrapper->setSiret('AAA20220220220');
+        $client = new MDApiClient();
+        $this->expectException(\MapaDirectSDK\Wrappers\MDApiWrapperValidatorException::class);
+        $client->call($wrapper);
+
+    }
+
+    public function testCallCatchErrors()
+    {
+        $wrapper = MDApiClient::getWrapper('Auth');
+        $wrapper->setCredentials('tech+mapa_jacky@202-ecommerce.com:xxx');
+        $wrapper->setWebHookUrl('https://www.202-ecommerce.com/');
+        $wrapper->setWebHookHash('488e7cafd8fc88f386ba2a88574a7f35');
+        $wrapper->setSiret('AAA20220220220');
+        $client = new MDApiClient();
+        $client->setLogger(new \MapaDirectSDK\Logger\MDApiLogger);
+        try {
+            $client->call($wrapper);
+        } catch (\MapaDirectSDK\Wrappers\MDApiWrapperValidatorException $e) {
+            $this->assertEquals('Le siret est obligatoire et être un chiffre de 14 caractères.', $client->getErrors()[0]);
+        }
+
+    }
+
     public function testPing()
     {
 

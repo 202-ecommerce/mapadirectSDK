@@ -33,8 +33,7 @@ class MDApiWrapperValidator
         }
         // no need to check more. testing SIRET are not really exist
         return true;
-
-
+        /**
         // on prend chaque chiffre un par un
         // si son index (position dans la chaîne en commence à 0 au premier caractère) est pair
         // on double sa valeur et si cette dernière est supérieure à 9, on lui retranche 9
@@ -56,6 +55,7 @@ class MDApiWrapperValidator
         } else {
             return true;
         }
+        */
     }
 
     /**
@@ -100,7 +100,7 @@ class MDApiWrapperValidator
             $time = gmmktime($parts[4], $parts[5], $parts[6], $parts[2], $parts[3], $parts[1]);
 
             $input_time = strtotime($date);
-            
+
             if ($input_time === false) {
                 return false;
             }

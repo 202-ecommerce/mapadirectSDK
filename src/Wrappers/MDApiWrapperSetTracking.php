@@ -50,10 +50,11 @@ class MDApiWrapperSetTracking extends MDApiWrapperAbstract implements MDApiWrapp
         } else {
             foreach ($this->input['products'] as $item_id => $quantity) {
                 if (!is_int($item_id)) {
-                    $this->errors[] = 'Le produit '.$item_id.' n\'est pas un identifiant valide.';
+                    $this->errors[] = 'Le produit ('.$item_id.') n\'est pas un identifiant valide.';
                 }
                 if (!is_int($quantity)) {
-                    $this->errors[] = 'La quantité ('.$quantity.') pour le produit '.$item_id.' n\'est pas un entier naturel.';
+                    $this->errors[] = 'La quantité ('.$quantity.') pour le produit ('.
+                        $item_id.') n\'est pas un entier naturel.';
                 }
             }
         }

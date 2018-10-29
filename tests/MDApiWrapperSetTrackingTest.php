@@ -22,30 +22,40 @@ class MDApiWrapperSetTrackingTest extends TestCase
         $this->assertEquals('/shipments', $wrapper->getURI());
         $this->assertEquals('POST', $wrapper->getMethod());
 
-        $data = '52807584900042';
-        $wrapper->setSiret($data);
-        $this->assertEquals($wrapper->getSiret(), $data);
-
+        $siret = '52807584900042';
+        $wrapper->setSiret($siret);
         $data = array(
             'comment' => "Colissimo 132465",
             'tracking_number' => "132465",
+            'order_id' => 123,
         );
-
         $wrapper->setInput($data);
+        $this->assertEquals($wrapper->getInput(), $data);
+
+        $wrapper = new MDApiWrapperSetTracking();
+        $siret = '52807584900042';
+        $wrapper->setSiret($siret);
+        $wrapper->setId(123);
         $data = array(
             'comment' => "Colissimo 132465",
-            'tracking_number' => "132465",
-            'order_id' => "123",
         );
-        $this->assertEquals($wrapper->getInput(), $data);
+        $wrapper->setInput($data);
+        $expectedData = array(
+            'order_id' => 123,
+            'tracking_number' => 'colis_non_suivi',
+            'comment' => "Colissimo 132465",
+        );
+        $this->assertEquals($wrapper->getInput(), $expectedData);
     }
 
 
     public function testCheck()
     {
         $wrapper = new MDApiWrapperSetTracking();
-        $data = '52807584900042';
-        $wrapper->setSiret($data);
+        $siret = '52807584900042';
+        $wrapper->setSiret($siret);
+        $this->assertFalse($wrapper->check());
+
         $wrapper->setId(123);
         $data = array(
             'comment' => "Colissimo 132465",
@@ -53,6 +63,10 @@ class MDApiWrapperSetTrackingTest extends TestCase
         );
         $wrapper->setInput($data);
         $this->assertFalse($wrapper->check());
+
+        $wrapper = new MDApiWrapperSetTracking();
+        $siret = '52807584900042';
+        $wrapper->setSiret($siret);
         $data['products'] = array(
             'un' => "quatre",
         );
@@ -60,8 +74,18 @@ class MDApiWrapperSetTrackingTest extends TestCase
         $this->assertFalse($wrapper->check());
         $this->assertEquals(3, count($wrapper->getErrors()));
 
-        $data['invoiceDate'] = "2018-06-07T17:56:00";
-        $wrapper->setInput($data);
-        $this->assertFalse($wrapper->check());
+        $wrapper = new MDApiWrapperSetTracking();
+        $siret = '52807584900042';
+        $wrapper->setId(123);
+        $wrapper->setSiret($siret);
+        $data = array(
+            'comment' => "Colissimo 132465",
+            'products' => array(
+                1234 => 10,
+                1235 => 3,
+            )
+        );
+        $wrapper->setInput($data);$wrapper->check();
+        $this->assertTrue($wrapper->check());
     }
 }
