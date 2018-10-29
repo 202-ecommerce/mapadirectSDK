@@ -1,21 +1,21 @@
 ---
-name: 4. SetInvoiceData
+name: 3. SetTracking
 category: Webservices commandes
 ---
 
 
-## Enveloppe pour envoyer les numéro et date de facture ##
+## Enveloppe pour envoyer les numéros de tracking des colis expédiés ##
 
 
 ### Description ###
 
-Le webservice `SetInvoiceData` permet d'envoyer les informations de facturation du marchand à MapaDirect.
+Le webservice `SetTracking` permet d'envoyer un numéro de tracking d'une commande.
 
 HTTP header:
 
 ```
-Path: /orders/{orderId}/setinvoicedata
-Method: PUT
+Path: /shipments
+Method: POST
 Authorization: token your_api_key
 X-SIRET: Siret_du_marchand
 ```
@@ -26,8 +26,12 @@ Corps de la requète :
 
 ```application/json
 {
-   "invoiceNumber" : "F132465",
-   "invoiceDate" : "2018-06-07T17:56:00.000Z"
+   "order_id" : "123",
+   "comments" : "Colissimo https://sample.com/ddd",
+   "trackign_number": "FDSXXX",
+   "products": {
+        "123456": 3
+   }
 }
 ```
 
@@ -36,8 +40,13 @@ Liste des validateurs inclus dans le SDK
 | Champs | Message |
 | ------ | ------ |
 | X-SIRET (envoyé en header) | Le siret est obligatoire et être un chiffre de 14 caractères. |
-| invoiceNumber | Le numéro de facture est obligatoire et disposer d'au moins un chiffre. |
-| invoiceDate | Le date de la facture est obligatoire être au format ISO 8601. |
+| order_id | Le numéro de commande est obligatoire et doit être un entier naturel. |
+| comments | Texte contenant l'URL de tracking si possible. |
+| trackign_number | Numéro de tracking. Par défaut vauqt "colis_non_suivi" si non défini. |
+| products | Tableau des produits expédiés contenant [id_produit => quantité] |
+
+NB : Si plusieurs colis sont nécessaire, il est possible d'appeler plusieurs fois la requète avec le contenu détaillé de chaque colis.
+
 
 L'enveloppe de la réponse est établie en json.
 
@@ -46,25 +55,15 @@ HTTP header de réponse :
 | Statut | Message |
 | ------ | ------ |
 | 200 | OK |
-| 400 | Un des attributs de la requête est manquant ou invoiceDate n'est pas au format JSON. |
-| 403 | Cas où l'utilisateur appelant n'est pas le marchand déclaré sur la commande. |
-| 404 | La commande n'existe pas. |
+| 400 | Un des attributs de la requête est erroné. |
 
 
 Corps de la réponse :
 
 ```application/json
 {
-    "securitizationUrl": "test"
 }
 ```
-
-SecuritizationUrl n'est présent que si le marchand a choisi de se faire payer par URICA.
-securitizationUrl est l'URL permettant au marchand de valider le rachat de facture par URICA.
-
-*Note : l'interfaçage avec URICA est en développement.*
-
-L'attribut securitizationUrl sera donc valorisé avec « test » jusqu'à ce que nos travaux aboutissent.
 
 ### Exemple ###
 
@@ -72,16 +71,19 @@ L'attribut securitizationUrl sera donc valorisé avec « test » jusqu'à ce que
 use MapaDirectSDK\MDApiClient;
 
 $orderId = 123;
-$invoice = [
-   invoiceNumber : "F132465",
-   invoiceDate : "2018-06-07T17:56:00.000Z"
+$tracking = [
+   "comments" => "Colissimo https://tracking.colissimo.com/FDSXXX",
+   "trackign_number" => "FDSXXX",
+   "products" => [
+        "123456" => 3
+   ]
 ];
 
-$wrapper = MDApiClient::getWrapper('SetInvoiceData');
+$wrapper = MDApiClient::getWrapper('SetTracking');
 $wrapper->setToken($apiKey);
 $wrapper->setSiret($siret);
 $wrapper->setId($orderId);
-$wrapper->setInput($invoice);
+$wrapper->setInput($tracking);
 
 $client = new MDApiClient();
 try {
@@ -99,5 +101,7 @@ if ($client->getResponse()->isSuccess()) {
     // Liste des erreurs retournées par l'API
 }
 ```
+
+NB : Pour respecter la nomenclature d'appel des webservices de MapaDirect, le SDK permet de saisir compléter l'id de commande `order_id` en passant par le setId ce qui completera le corps de la requète.
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.

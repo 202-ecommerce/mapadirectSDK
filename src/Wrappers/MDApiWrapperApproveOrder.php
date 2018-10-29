@@ -29,13 +29,15 @@ use MapaDirectSDK\Wrappers\MDApiWrapperValidator;
 
 /**
  * @desc: API Client
- *  /orders/{orderId}/setinvoicedata
+ *  /orders/{orderId}
  */
-class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWrapperInterface
+class MDApiWrapperApproveOrder extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
     protected $uri = '/orders/';
 
     protected $method = 'PUT';
+
+    protected $input = array('approved' => true, 'do_not_create_invoice' => true);
 
     /**
      * @inheritdoc
@@ -46,16 +48,6 @@ class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWr
             $this->errors[] = 'L\'id de la commande est obligatoire.';
         }
 
-        if (!isset($this->input['invoiceNumber']) ||
-            empty($this->input['invoiceNumber'])) {
-            $this->errors[] = 'Le numéro de facture est obligatoire et disposer d\'au moins un chiffre.';
-        }
-
-        if (!isset($this->input['invoiceDate']) ||
-            !MDApiWrapperValidator::validateDate($this->input['invoiceDate'])) {
-            $this->errors[] = 'Le date de la facture est obligatoire être au format ISO 8601.';
-        }
-
         return parent::check();
     }
 
@@ -64,6 +56,6 @@ class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWr
      */
     public function getUri()
     {
-        return $this->uri.$this->id.'/setinvoicedata';
+        return $this->uri.$this->id;
     }
 }

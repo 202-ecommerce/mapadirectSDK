@@ -31,39 +31,50 @@ use MapaDirectSDK\Wrappers\MDApiWrapperValidator;
  * @desc: API Client
  *  /orders/{orderId}/setinvoicedata
  */
-class MDApiWrapperSetInvoiceData extends MDApiWrapperAbstract implements MDApiWrapperInterface
+class MDApiWrapperSetTracking extends MDApiWrapperAbstract implements MDApiWrapperInterface
 {
-    protected $uri = '/orders/';
+    protected $uri = '/shipments';
 
-    protected $method = 'PUT';
+    protected $method = 'POST';
 
     /**
      * @inheritdoc
      */
     public function check()
     {
-        if (empty($this->id)) {
+        if (empty($this->id) && empty($this->input['order_id'])) {
             $this->errors[] = 'L\'id de la commande est obligatoire.';
         }
-
-        if (!isset($this->input['invoiceNumber']) ||
-            empty($this->input['invoiceNumber'])) {
-            $this->errors[] = 'Le numéro de facture est obligatoire et disposer d\'au moins un chiffre.';
-        }
-
-        if (!isset($this->input['invoiceDate']) ||
-            !MDApiWrapperValidator::validateDate($this->input['invoiceDate'])) {
-            $this->errors[] = 'Le date de la facture est obligatoire être au format ISO 8601.';
+        if (!isset($this->input['products']) || count($this->input['products']) < 1) {
+            $this->errors[] = 'Le tableau de produits est obligatoire.';
+        } else {
+            foreach ($this->input['products'] as $item_id => $quantity) {
+                if (!is_int($item_id)) {
+                    $this->errors[] = 'Le produit '.$item_id.' n\'est pas un identifiant valide.';
+                }
+                if (!is_int($quantity)) {
+                    $this->errors[] = 'La quantité ('.$quantity.') pour le produit '.$item_id.' n\'est pas un entier naturel.';
+                }
+            }
         }
 
         return parent::check();
     }
 
     /**
-     * @inheritdoc
+     * @desc: get request body
+     *
+     * @return string
      */
-    public function getUri()
+    public function getInput()
     {
-        return $this->uri.$this->id.'/setinvoicedata';
+        if (empty($this->input['order_id'])) {
+            $this->input['order_id'] = $this->id;
+        }
+        if (empty($this->input['tracking_number'])) {
+            $this->input['tracking_number'] = 'colis_non_suivi';
+        }
+
+        return $this->input;
     }
 }

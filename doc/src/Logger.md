@@ -33,7 +33,7 @@ Si le corps de l'appel au webhook de commande est un tableau vide, le SDK retour
 
 ## Logger ##
 
-Le SDK dispose d'un logger qui a une valeur d'interface. Il n'est pas prévu que le logger du SDK dispose de la possibilité de . Pour logger récupérer les logs des requètes, il est nécessaire de créer un adapter du logger `MapaDirectSDK\Logger\MDApiLogger`
+Le SDK dispose d'un logger qui a valeur d'interface. Il n'est pas prévu que le logger du SDK dispose de la possibilité d'écrire les logs quelques part. Pour récupérer les logs des requètes à l'API et erreurs du validateur, il est nécessaire de créer un adapter du logger `MapaDirectSDK\Logger\MDApiLogger`
 
 Exemple :
 
@@ -48,10 +48,13 @@ class MDApiLogger extends MDApiLoggerDefault
         file_put_contents($level . '.file.log', '[' . $wrapper . ']' . $message);
     }
 }
+```
 
-// Instanciation du client
+NB: Dans tous les exemples suivants, le logger ne sera pas instancié.
+
+Vous pouvez instancier le client avec un logger comme suit.
+
+```php
 $apiClient = new \MapaDirectSDK\MDApiClient();
 $apiClient->setLogger(new MDApiLogger);
 ```
-
-NB: Dans tous les exemples suivants, le logger ne sera pas appelé.

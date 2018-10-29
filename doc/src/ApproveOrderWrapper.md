@@ -1,20 +1,20 @@
 ---
-name: 4. SetInvoiceData
+name: 2. ApproveOrder
 category: Webservices commandes
 ---
 
 
-## Enveloppe pour envoyer les numéro et date de facture ##
+## Enveloppe pour approver une commande suite au dépôts d'une commande ##
 
 
 ### Description ###
 
-Le webservice `SetInvoiceData` permet d'envoyer les informations de facturation du marchand à MapaDirect.
+Le webservice `ApproveOrder` permet de confirmer la prise en charge de la commande. Cet état correspond à "Commande enregistrée" et/ou "En cours de préparation" chez le marchand.
 
 HTTP header:
 
 ```
-Path: /orders/{orderId}/setinvoicedata
+Path: /orders/{orderId}
 Method: PUT
 Authorization: token your_api_key
 X-SIRET: Siret_du_marchand
@@ -22,22 +22,24 @@ X-SIRET: Siret_du_marchand
 
 L'authentification est établie à partir du token `Api Key` du marchand sur la marketplace MapaDirect retourné par l'authentification.
 
-Corps de la requète :
+Corps de la requète **automatiquement générée par le SDK** :
 
 ```application/json
 {
-   "invoiceNumber" : "F132465",
-   "invoiceDate" : "2018-06-07T17:56:00.000Z"
+   "approved" : true,
+   "do_not_create_invoice" : true
 }
 ```
+
+**NB : Il est inutile de préparer le corps de la requète. Les valeurs par défaut ci-dessus sont imposées par MapaDirect.**
 
 Liste des validateurs inclus dans le SDK
 
 | Champs | Message |
 | ------ | ------ |
 | X-SIRET (envoyé en header) | Le siret est obligatoire et être un chiffre de 14 caractères. |
-| invoiceNumber | Le numéro de facture est obligatoire et disposer d'au moins un chiffre. |
-| invoiceDate | Le date de la facture est obligatoire être au format ISO 8601. |
+| approved | Doit valoir vrai. |
+| do_not_create_invoice | Le processus d'achat en marché public impose une création de facture après réception de la marchandise. Doit valoir vrai. |
 
 L'enveloppe de la réponse est établie en json.
 
@@ -46,25 +48,8 @@ HTTP header de réponse :
 | Statut | Message |
 | ------ | ------ |
 | 200 | OK |
-| 400 | Un des attributs de la requête est manquant ou invoiceDate n'est pas au format JSON. |
-| 403 | Cas où l'utilisateur appelant n'est pas le marchand déclaré sur la commande. |
 | 404 | La commande n'existe pas. |
 
-
-Corps de la réponse :
-
-```application/json
-{
-    "securitizationUrl": "test"
-}
-```
-
-SecuritizationUrl n'est présent que si le marchand a choisi de se faire payer par URICA.
-securitizationUrl est l'URL permettant au marchand de valider le rachat de facture par URICA.
-
-*Note : l'interfaçage avec URICA est en développement.*
-
-L'attribut securitizationUrl sera donc valorisé avec « test » jusqu'à ce que nos travaux aboutissent.
 
 ### Exemple ###
 
@@ -72,16 +57,11 @@ L'attribut securitizationUrl sera donc valorisé avec « test » jusqu'à ce que
 use MapaDirectSDK\MDApiClient;
 
 $orderId = 123;
-$invoice = [
-   invoiceNumber : "F132465",
-   invoiceDate : "2018-06-07T17:56:00.000Z"
-];
 
-$wrapper = MDApiClient::getWrapper('SetInvoiceData');
+$wrapper = MDApiClient::getWrapper('ApproveOrder');
 $wrapper->setToken($apiKey);
 $wrapper->setSiret($siret);
 $wrapper->setId($orderId);
-$wrapper->setInput($invoice);
 
 $client = new MDApiClient();
 try {
