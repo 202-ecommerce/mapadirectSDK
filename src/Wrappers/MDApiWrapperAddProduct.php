@@ -45,17 +45,17 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
 
         if (!isset($this->input['inventory']['price']) ||
             !is_numeric($this->input['inventory']['price'])) {
-            $this->errors[] = ' Le prix s\'entend HT, est obligatoire et doit être un nombre décimal.';
+            $this->errors[] = 'Le prix s\'entend HT, est obligatoire et doit être un nombre décimal.';
         }
 
         if (!isset($this->input['inventory']['amount']) ||
             !is_numeric($this->input['inventory']['amount'])) {
-            $this->errors[] = ' La quantité en stock doit être un entier naturel en positif.';
+            $this->errors[] = 'La quantité en stock doit être un entier naturel en positif.';
         }
 
         if (!isset($this->input['inventory']['combination']) ||
             !is_array($this->input['inventory']['combination'])) {
-            $this->errors[] = ' Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef 
+            $this->errors[] = 'Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef
             le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144]';
         }
 
@@ -64,32 +64,31 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
             $this->errors[] = 'Le champs combination_code  doit être un EAN13 valide.';
         }
 
-        if (!isset($this->input['inventory']['green_tax']) ||
-            !is_float($this->input['inventory']['green_tax'])) {
-            $this->errors[] =  'L\'éco participation devra être inclus dans le prix HT (champs price) et sera 
-            affiché sur la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal. ';
+        if (!isset($this->input['green_tax']) ||
+            !is_numeric($this->input['green_tax'])) {
+            $this->errors[] =  'L\'éco participation devra être inclus dans le prix HT (champs price) et sera
+            affiché sur la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal.';
         }
 
-        if (!isset($this->input['inventory']['tax_ids']) ||
-            !is_array($this->input['inventory']['tax_ids'])) {
+        if (!isset($this->input['tax_ids']) ||
+            !is_array($this->input['tax_ids'])) {
             $this->errors[] = 'La TVA est obligatoire et doit être indiquée sous forme de tableau ayant pour valeur
-             l\'identifiant de la Taxe. Exemple poru la TAV à 20% : tax_ids => [0 => 5] ';
+             l\'identifiant de la Taxe. Exemple pour la TVA à 20% : tax_ids => [0 => 5] ';
         }
 
-        if (!isset($this->input['inventory']['main_category']) ||
-            !is_int($this->input['inventory']['main_category'])) {
+        if (!isset($this->input['main_category']) ||
+            !is_int($this->input['main_category'])) {
             $this->errors[] = 'La categorie est obligatoire et doit être entier naturel positif correspondant 
             à une categorie MapaDirect.';
         }
 
-        if (!isset($this->input['inventory']['free_shipping']) ||
-            !in_array($this->input['inventory']['free_shipping'], array("Y", "N"))) {
+        if (!isset($this->input['free_shipping']) ||
+            !in_array($this->input['free_shipping'], array("Y", "N"))) {
             $this->errors[] = 'La gratuité des frais de port pour un produit est obligatoire et doit être
              l\'une des valeurs suivantes : Y (yes) ou N (No)';
         }
 
-        if (!isset($this->input['infinite_stock']) ||
-            !in_array($this->input['infinite_stock'], array("1", "0"))) {
+        if (!isset($this->input['infinite_stock']) || !is_bool($this->input['infinite_stock'])) {
             $this->errors[] = 'Le stock infini est obligatoire et doit être un boolean.';
         }
 

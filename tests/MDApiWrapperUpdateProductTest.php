@@ -50,13 +50,12 @@ class MDApiWrapperUpdateProductTest extends TestCase
                 'price' => 15.0,
                 'combination' => array(),
                 'combination_code' => '3700688558929',
-                'green_tax' => 1.0,
-                'tax_ids' => [1],
-                'main_category' => 1932,
-                'free_shipping' => 'Y',
             ),
-            'infinite_stock' => 1
-
+            'green_tax' => 1.0,
+            'tax_ids' => [1],
+            'main_category' => 1932,
+            'free_shipping' => 'Y',
+            'infinite_stock' => true
         );
         $wrapper->setInput($product);
         $this->assertTrue($wrapper->check());
