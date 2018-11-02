@@ -22,6 +22,8 @@ use MapaDirectSDK\Wrappers\MDApiWrapperGetCategories;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetTaxes;
 use MapaDirectSDK\Wrappers\MDApiWrapperGetProduct;
 use MapaDirectSDK\Wrappers\MDApiWrapperPing;
+use MapaDirectSDK\Wrappers\MDApiWrapperApproveOrder;
+use MapaDirectSDK\Wrappers\MDApiWrapperSetTracking;
 use MapaDirectSDK\Wrappers\MDApiWrapperInterface;
 use MapaDirectSDK\Wrappers\MDApiWrapperValidatorException;
 use MapaDirectSDK\Logger\MDApiLogger;
@@ -44,6 +46,8 @@ class MDApiClient
         'GetProduct'         => MDApiWrapperGetProduct::class,
         'Ping'               => MDApiWrapperPing::class,
         'SetInvoiceData'     => MDApiWrapperSetInvoiceData::class,
+        'ApproveOrder'       => MDApiWrapperApproveOrder::class,
+        'SetTracking'        => MDApiWrapperSetTracking::class,
     );
 
     private $url;
@@ -208,7 +212,7 @@ class MDApiClient
         $message .= 'Body: ' . $content;
         $wrappers = array_flip(static::WRAPPER);
         $this->logger->write('info', $message, $wrappers[get_class($this->wrapper)]);
-
+echo $message;
         if ($httpsCode == 200 || $httpsCode == 201) {
             $this->response = new MDApiResponse('success');
             $this->wrapper->parseResponse($this->response, $content);
