@@ -107,8 +107,9 @@ Liste des status de commande :
 
 | Statut | Commentaire |
 | ------ | ------ |
+| SENT | La commande est soumise par le client et "envoyée" au marchand sur son webhook de réception de commande. |
 | VALIDATED | La commande est valide sur MapaDirect et cours de traitement par le marchand. |
-| SENT | Le marchand a expédié la commande. |
+| SHIPPED | La commande est expédié. (à venir) |
 | RECEIVED | Le client a reçu la commande. |
 | EMITTED | La facture a été générée et dématérialisée. |
 | TOTALLYPAID | La facture a été payée (entièrement). |

@@ -212,7 +212,7 @@ class MDApiClient
         $message .= 'Body: ' . $content;
         $wrappers = array_flip(static::WRAPPER);
         $this->logger->write('info', $message, $wrappers[get_class($this->wrapper)]);
-echo $message;
+
         if ($httpsCode == 200 || $httpsCode == 201) {
             $this->response = new MDApiResponse('success');
             $this->wrapper->parseResponse($this->response, $content);
