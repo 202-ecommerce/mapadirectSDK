@@ -41,7 +41,7 @@ class MDApiWrapperAddProductTest extends TestCase
             'product_code' => '3700688558929',
             'product' => 'Very comfortable chair',
             'status' => 'A',
-            'inventory' => $inventory,
+            'inventory' => array($inventory),
             'green_tax' => 1.0,
             'tax_ids' => [1],
             'main_category' => 1932,

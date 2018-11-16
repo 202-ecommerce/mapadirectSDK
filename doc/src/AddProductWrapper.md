@@ -60,10 +60,11 @@ Liste des validateurs inclus dans le SDK
 | product_code | Le code produit est obligatoire et être un EAN13 valide. |
 | infinite_stock | Le stock infini est obligatoire et doit être un booléen. |
 | status | Le statut du produit est obligatoire et doit être l'une des valeurs suivantes : A (available) H (hidden) D (disabled). |
-| inventory.amount | La quantité en stock doit être un entier naturel en positif. |
-| inventory.price | Le prix s'entend HT, est obligatoire et doit être un nombre décimal. |
-| inventory.combination | Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144] |
-| inventory.combination_code | Le code produit est obligatoire et être un EAN13 valide. |
+| inventory | Le tableau d'inventory est obligatoire doit être un tableau. |
+| inventory[0].amount | La quantité en stock doit être un entier naturel en positif. |
+| inventory[0].price | Le prix s'entend HT, est obligatoire et doit être un nombre décimal. |
+| inventory[0].combination | Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144] |
+| inventory[0].combination_code | Le code produit n'est pas obligatoire et être un EAN13 valide. |
 | green_tax | L'éco participation devra être inclus dans le prix HT (champs price) et sera affiché sur la commande à titre indicatif. Ce champs est obligatoire et doit être un nombre décimal. |
 | tax_ids | La TVA est obligatoire et doit être indiquée sous forme de tableau ayant pour valeur l'identifiant de la Taxe. Exemple poru la TAV à 20% : tax_ids => [0 => 5] |
 | main_category | La categorie est obligatoire et doit être entier naturel positif correspondant à une categorie MapaDirect. |

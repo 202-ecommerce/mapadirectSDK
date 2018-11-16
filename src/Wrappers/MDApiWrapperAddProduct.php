@@ -43,20 +43,27 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
              A (available) H (hidden) D (disabled).';
         }
 
-        if (!isset($this->input['inventory']->price) ||
-            !is_numeric($this->input['inventory']->price)) {
-            $this->errors[] = 'Le prix s\'entend HT, est obligatoire et doit être un nombre décimal.';
-        }
+        if (!isset($this->input['inventory']) ||
+            !is_array($this->input['inventory'])) {
+            $this->errors[] = 'Le tableau d\'inventory est obligatoire doit être un tableau';
+        } else {
+            foreach ($this->input['inventory'] as $key => $inventory) {
+                if (!isset($inventory->price) ||
+                    !is_numeric($inventory->price)) {
+                    $this->errors[] = 'Le prix s\'entend HT, est obligatoire et doit être un nombre décimal. (Inventory key '.$key.')';
+                }
 
-        if (!isset($this->input['inventory']->amount) ||
-            !is_numeric($this->input['inventory']->amount)) {
-            $this->errors[] = 'La quantité en stock doit être un entier naturel en positif.';
-        }
+                if (!isset($inventory->amount) ||
+                    !is_numeric($inventory->amount)) {
+                    $this->errors[] = 'La quantité en stock doit être un entier naturel en positif. (Inventory key '.$key.')';
+                }
 
-        if (!isset($this->input['inventory']->combination) ||
-            !is_array($this->input['inventory']->combination)) {
-            $this->errors[] = 'Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef
-            le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144]';
+                if (!isset($inventory->combination) ||
+                    !is_array($inventory->combination)) {
+                    $this->errors[] = 'Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef
+            le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144] (Inventory key '.$key.')';
+                }
+            }
         }
 
         if (!isset($this->input['green_tax']) ||
