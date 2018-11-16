@@ -4,7 +4,7 @@ category: Webservices commandes
 ---
 
 
-## Enveloppe pour envoyer les numéros de tracking des colis expédiés ##
+## Enveloppe d'envoi des numéros de tracking des colis expédiés ##
 
 
 ### Description ###
@@ -27,7 +27,7 @@ Corps de la requète :
 ```application/json
 {
    "order_id" : "123",
-   "comments" : "Colissimo https://sample.com/ddd",
+   "comments" : "Colissimo https://sample.com/FDSXXX",
    "trackign_number": "FDSXXX",
    "products": {
         "123456": 3
@@ -45,7 +45,7 @@ Liste des validateurs inclus dans le SDK
 | trackign_number | Numéro de tracking. Par défaut vauqt "colis_non_suivi" si non défini. |
 | products | Tableau des produits expédiés contenant [id_produit => quantité] |
 
-NB : Si plusieurs colis sont nécessaire, il est possible d'appeler plusieurs fois la requète avec le contenu détaillé de chaque colis.
+NB : Si plusieurs colis sont nécessaire, il est possible d'appeler plusieurs fois le webservice avec la liste des produit contenu dans chaque colis.
 
 
 L'enveloppe de la réponse est établie en json.
@@ -102,6 +102,6 @@ if ($client->getResponse()->isSuccess()) {
 }
 ```
 
-NB : Pour respecter la nomenclature d'appel des webservices de MapaDirect, le SDK permet de saisir compléter l'id de commande `order_id` en passant par le setId ce qui completera le corps de la requète.
+NB : Pour respecter la nomenclature d'appel des webservices de MapaDirect, le SDK permet de saisir l'id de commande `order_id` en le définissant par setId ce qui completera le corps de la requète.
 
 `$data` retourne un tableau php comme décrit dans le corps de la réponse.

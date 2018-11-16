@@ -42,7 +42,7 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
             $this->errors[] = 'Le statut du produit est obligatoire et doit être l\'une des valeurs suivantes :
              A (available) H (hidden) D (disabled).';
         }
-
+/*
         if (!isset($this->input['inventory']['price']) ||
             !is_numeric($this->input['inventory']['price'])) {
             $this->errors[] = 'Le prix s\'entend HT, est obligatoire et doit être un nombre décimal.';
@@ -63,7 +63,7 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
             MDApiWrapperValidator::isEan13($this->input['inventory']['combination_code']) == false) {
             $this->errors[] = 'Le champs combination_code  doit être un EAN13 valide.';
         }
-
+*/
         if (!isset($this->input['green_tax']) ||
             !is_numeric($this->input['green_tax'])) {
             $this->errors[] =  'L\'éco participation devra être inclus dans le prix HT (champs price) et sera
@@ -78,7 +78,7 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
 
         if (!isset($this->input['main_category']) ||
             !is_int($this->input['main_category'])) {
-            $this->errors[] = 'La categorie est obligatoire et doit être entier naturel positif correspondant 
+            $this->errors[] = 'La categorie est obligatoire et doit être entier naturel positif correspondant
             à une categorie MapaDirect.';
         }
 

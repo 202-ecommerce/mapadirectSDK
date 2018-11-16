@@ -206,7 +206,7 @@ class MDApiClient
         $message = 'Request:' . " \r\n";
         $message .= 'URI: ' . $this->wrapper->getUri() . " \r\n";
         $message .= 'Header: ' . print_r($this->wrapper->getHeaders(), true) . " \r\n";
-        $message .= 'Body: ' . print_r($this->wrapper->getInput(), true) . " \r\n";
+        $message .= 'Body: ' . json_encode($this->wrapper->getInput()) . " \r\n";
         $message .= 'Response: ***' . " \r\n";
         $message .= 'Status: ' . $httpsCode ." \r\n";
         $message .= 'Body: ' . $content;
