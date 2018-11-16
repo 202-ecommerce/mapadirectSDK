@@ -95,6 +95,14 @@ Corps de la réponse :
 ```php
 use MapaDirectSDK\MDApiClient;
 
+
+$inventory = new \stdClass;
+$inventory->amount = (int) 123;
+$inventory->price = (float) 15.0000;
+$inventory->combination = array();
+$inventory->combination_code = '1234565410333';
+
+
 $productId = 12345;
 $product = [
     'product_id' => $productId
@@ -106,12 +114,7 @@ $product = [
     'free_shipping' => 'N',
     'main_category' => 1932,
     'tax_ids' => [5],
-    'inventory' => [
-        'amount' => '123',
-        'price' => 15.0000,
-        'combination' => [12 => 1244],
-        'combination_code' => '1234565410333',
-    ]
+    'inventory' => array($inventory)
 ];
 
 $wrapper = MDApiClient::getWrapper('UpdateProduct');

@@ -88,6 +88,12 @@ l'identifiant sur la marketplace mapadirect.**
 ```php
 use MapaDirectSDK\MDApiClient;
 
+$inventory = new \stdClass;
+$inventory->amount = (int) 123;
+$inventory->price = (float) 15.0000;
+$inventory->combination = array();
+$inventory->combination_code = '1234565410333';
+
 $product = [
     'product_code' => '1234565410333',
     'product' => 'Very comfortable chair',
@@ -97,12 +103,7 @@ $product = [
     'free_shipping' => 'N',
     'main_category' => 1932,
     'tax_ids' => [5],
-    'inventory' => [
-        'amount' => '123',
-        'price' => 15.0000,
-        'combination' => [12 => 1244],
-        'combination_code' => '1234565410333',
-    ]
+    'inventory' => array($inventory)
 ];
 
 $wrapper = MDApiClient::getWrapper('AddProduct');
