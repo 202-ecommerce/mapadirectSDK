@@ -39,18 +39,16 @@ class MDApiWrapperUpdateProductTest extends TestCase
         $data = '52807584900042';
         $wrapper->setSiret($data);
         $wrapper->setId(123);
-
+        $inventory = new \stdClass;
+        $inventory->amount = (int) 1;
+        $inventory->price = (float) 15.0;
+        $inventory->combination = array();
         $product = array(
             'product_id' => 233345,
             'product_code' => '3700688558929',
             'product' => 'Very comfortable chair',
             'status' => 'A',
-            'inventory' => array(
-                'amount' => 1,
-                'price' => 15.0,
-                'combination' => array(),
-                'combination_code' => '3700688558929',
-            ),
+            'inventory' => $inventory,
             'green_tax' => 1.0,
             'tax_ids' => [1],
             'main_category' => 1932,

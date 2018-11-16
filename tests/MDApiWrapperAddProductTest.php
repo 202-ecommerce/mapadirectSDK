@@ -33,17 +33,15 @@ class MDApiWrapperAddProductTest extends TestCase
         $wrapper = new MDApiWrapperAddProduct();
         $data = '52807584900042';
         $wrapper->setSiret($data);
-
+        $inventory = new \stdClass;
+        $inventory->amount = (int) 1;
+        $inventory->price = (float) 15.0;
+        $inventory->combination = array();
         $product = array(
             'product_code' => '3700688558929',
             'product' => 'Very comfortable chair',
             'status' => 'A',
-            'inventory' => array(
-                'amount' => 1,
-                'price' => 15.0,
-                'combination' => array(),
-                'combination_code' => '3700688558929',
-            ),
+            'inventory' => $inventory,
             'green_tax' => 1.0,
             'tax_ids' => [1],
             'main_category' => 1932,
@@ -57,9 +55,6 @@ class MDApiWrapperAddProductTest extends TestCase
         $wrapper->setInput($product);
         $this->assertFalse($wrapper->check());
 
-        $product['inventory']['combination_code'] = "ean13";
-        $wrapper->setInput($product);
-        $this->assertFalse($wrapper->check());
 
         $wrapper->setInput(array());
         $this->assertFalse($wrapper->check());
