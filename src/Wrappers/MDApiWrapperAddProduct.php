@@ -48,6 +48,10 @@ class MDApiWrapperAddProduct extends MDApiWrapperAbstract implements MDApiWrappe
             $this->errors[] = 'Le tableau d\'inventory est obligatoire doit être un tableau';
         } else {
             foreach ($this->input['inventory'] as $key => $inventory) {
+                if (!is_object($inventory)) {
+                    $this->errors[] = 'L\'inventory est obligatoire et doit être un object.';
+                    continue;
+                }
                 if (!isset($inventory->price) ||
                     !is_numeric($inventory->price)) {
                     $this->errors[] = 'Le prix s\'entend HT, est obligatoire et doit être un nombre décimal. (Inventory key '.$key.')';
