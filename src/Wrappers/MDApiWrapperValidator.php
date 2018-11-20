@@ -96,16 +96,8 @@ class MDApiWrapperValidator
 
     public static function validateDate($date)
     {
-        if (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})\.000Z$/', $date, $parts) == true) {
-            $time = gmmktime($parts[4], $parts[5], $parts[6], $parts[2], $parts[3], $parts[1]);
-
-            $input_time = strtotime($date);
-
-            if ($input_time === false) {
-                return false;
-            }
-
-            return $input_time == $time;
+        if (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})/', $date, $parts) == true) {
+            return true;
         } else {
             return false;
         }
