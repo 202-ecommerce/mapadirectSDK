@@ -74,8 +74,6 @@ try {
 
 $data = $client->getResponse()->getContent();
 if ($client->getResponse()->isSuccess()) {
-    $idMarchand = $data['id'];
-    // stockez l'id_marchand quelque part précieuement, il sera requis dans un wrapper insoupsonné.
     $apiKey = $data['apiKey'];
     // store API_key somewhere like in a database
 } else {

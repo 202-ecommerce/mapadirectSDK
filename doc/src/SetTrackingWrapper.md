@@ -62,8 +62,11 @@ Corps de la réponse :
 
 ```application/json
 {
+    "shipment_id":122
 }
 ```
+
+A priori, cette donnée n'a pas nécessite d'être conservée hormis à usage de log.
 
 ### Exemple ###
 

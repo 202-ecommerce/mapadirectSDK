@@ -51,9 +51,9 @@ composer.phar update
 
 ## Guide des versions
 
-| Version | Status     | Packagist           | Namespace    | Repo                | Doc                | PSR-7 | PHP Version |
-|---------|------------|---------------------|--------------|---------------------|---------------------|-------|-------------|
-| dev-master     | EOL        | `mapadirectsdk/mapadirectsdk`     | `MapaDirectSDK`     | [master][mapadirectsdk-1-repo] | [master][mapadirectsdk-1-doc] | No    | >= 5.6    |
+| Version | Status     | Packagist                     | Namespace           | Repo                           | Doc                            | PSR-7 | PHP Version |
+|---------|------------|-------------------------------|---------------------|--------------------------------|--------------------------------|-------|-------------|
+| 1.x     | EOL        | `mapadirectsdk/mapadirectsdk` | `MapaDirectSDK`     | [master][mapadirectsdk-1-repo] | [develop][mapadirectsdk-1-doc] | No    | >= 5.6      |
 
 [mapadirectsdk-1-repo]: https://github.com/202-ecommerce/mapadirectSDK
 [mapadirectsdk-1-doc]: https://docs.202-ecommerce.com/mapadirectsdk/

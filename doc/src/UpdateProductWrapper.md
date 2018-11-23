@@ -39,9 +39,7 @@ Corps de la requète :
     ],
     "inventory": [
         {
-            "combination": {
-                "12": 1144
-            },
+            "combination": { },
             "amount": 5,
             "price": 48.4,
             "combination_code": "4006381333933"
@@ -60,7 +58,7 @@ Liste des validateurs inclus dans le SDK
 | product_code | Le code produit est obligatoire et être un EAN13 valide. |
 | infinite_stock | Le stock infini est obligatoire et doit être un booléen. |
 | status | Le statut du produit est obligatoire et doit être l'une des valeurs suivantes : A (available) H (hidden) D (disabled). |
-| inventory | Le tableau d'inventory est obligatoire doit être un tableau. |
+| inventory | Le tableau d'inventory (objet php standard) est obligatoire doit être un tableau. |
 | inventory[0].amount | La quantité en stock doit être un entier naturel en positif. |
 | inventory[0].price | Le prix s'entend HT, est obligatoire et doit être un nombre décimal. |
 | inventory[0].combination | Le tableau de combinaison est obligatoire doit être un tableau ayant pour clef le champs company_id et pour valeur la main_category. Exemple : combination => [12 => 1144] |
@@ -95,13 +93,10 @@ Corps de la réponse :
 ```php
 use MapaDirectSDK\MDApiClient;
 
-
 $inventory = new \stdClass;
 $inventory->amount = (int) 123;
 $inventory->price = (float) 15.0000;
-$inventory->combination = array();
-$inventory->combination_code = '1234565410333';
-
+$inventory->combination = [];
 
 $productId = 12345;
 $product = [
@@ -114,7 +109,7 @@ $product = [
     'free_shipping' => 'N',
     'main_category' => 1932,
     'tax_ids' => [5],
-    'inventory' => array($inventory)
+    'inventory' => [$inventory]
 ];
 
 $wrapper = MDApiClient::getWrapper('UpdateProduct');
@@ -136,7 +131,7 @@ $data = $client->getResponse()->getContent();
 if ($client->getResponse()->isSuccess()) {
     $data = $client->getResponse()->getContent();
 } else {
-    // Désolé mais l'API retour une erreur 500...
+    // Désolé mais l'API retourne une erreur 500 en cas de soumission de données impropres...
     // c'est pourquoi nous avons mis en place un validateur très strict dans ce SDK avec tous les cas d'erreur connu.
 }
 ```
