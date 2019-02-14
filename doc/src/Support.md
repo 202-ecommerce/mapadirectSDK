@@ -1,9 +1,8 @@
 ---
-name: Contact us
+name: Contactez-nous
 category: Support
 ---
 
-### Support ### 
 
 Pour tous les problèmes techniques merci de créer un nouvel "issue" sur le projet de MAPAdirect SDK sur github https://github.com/202-ecommerce/mapadirectSDK. 
 
