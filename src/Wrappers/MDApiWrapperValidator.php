@@ -86,6 +86,10 @@ class MDApiWrapperValidator
 
         $key = $ean13[12]; // clé de contrôle égale au dernier chiffre
 
+        if ($key == 0) {
+            $key = 10;
+        }
+
         // la clé de contrôle doit être égale à : 10 - (reste de la division de la somme des 12 premiers chiffres)
         if (10 - ($sum % 10) != $key) {
             return false;
