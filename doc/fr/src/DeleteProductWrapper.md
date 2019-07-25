@@ -9,7 +9,8 @@ category: Webservices produits
 
 ### Description ###
 
-Le webservice AddProduct permet d'envoyer un produit sur la marketplace mapadirect.
+Le webservice DeleteProduct permet de supprimer le produit sur la
+marketplace mapadirect.
 
 HTTP header:
 

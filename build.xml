@@ -17,10 +17,10 @@
         depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb" />
 
     <target name="build-doc"
-        depends="build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm-install,doc" />
+        depends="build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm-install,doc-fr,doc-en" />
 
     <target name="build-doc-clean"
-        depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm,doc" />
+        depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm,doc-fr,doc-en" />
 
     <target name="build-parallel"
         depends="build-common,tools-parallel" />
@@ -28,7 +28,7 @@
     <target name="build-parallel-clean"
         depends="clean,build-common,tools-parallel" />
 
-    <target name="build-common" depends="lint,prepare,composer,phpunit,npm,doc" />
+    <target name="build-common" depends="lint,prepare,composer,phpunit,npm,doc-en,doc-fr" />
 
     <target name="tools-parallel" description="Run tools in parallel">
         <parallel threadCount="2">
@@ -171,10 +171,17 @@
         </exec>
     </target>
 
-    <target name="doc" description="Build documentation mini site.">
+    <target name="doc-en" description="Build documentation mini site.">
         <exec executable="npm">
             <arg value="run" />
-            <arg value="doc-build" />
+            <arg value="doc-build-en" />
+        </exec>
+    </target>
+
+    <target name="doc-fr" description="Build documentation mini site.">
+        <exec executable="npm">
+            <arg value="run" />
+            <arg value="doc-build-fr" />
         </exec>
     </target>
 

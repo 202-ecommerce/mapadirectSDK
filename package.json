@@ -8,7 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "doc-build": "stylemark -i doc -o build/doc -c doc/config.yml",
+    "doc-build-fr": "stylemark -i doc/fr -o build/doc/fr -c doc/fr/config.yml",
+    "doc-build-en": "stylemark -i doc/en -o build/doc/en -c doc/en/config.yml",
     "doc-watch": "stylemark -i doc -o build/doc -c doc/config.yml -w -b"
   },
   "repository": {
