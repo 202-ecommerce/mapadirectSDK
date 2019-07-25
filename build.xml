@@ -48,7 +48,8 @@
         <delete dir="${build-dir}/api" />
         <delete dir="${build-dir}/code-browser" />
         <delete dir="${build-dir}/coverage" />
-        <delete dir="${build-dir}/doc" />
+        <delete dir="${build-dir}/doc_fr/" />
+        <delete dir="${build-dir}/doc_en/" />
         <delete dir="${build-dir}/logs" />
         <delete dir="${build-dir}/pdepend" />
     </target>
@@ -156,7 +157,8 @@
         <mkdir dir="${build-dir}/coverage" />
         <mkdir dir="${build-dir}/logs" />
         <mkdir dir="${build-dir}/pdepend" />
-        <mkdir dir="${build-dir}/doc" />
+        <mkdir dir="${build-dir}/doc_fr" />
+        <mkdir dir="${build-dir}/doc_en" />
     </target>
 
     <target name="npm" depends="clean-npm,npm-install" description="Install or update node dependencies" />
@@ -174,7 +176,14 @@
     <target name="doc" description="Build documentation mini site.">
         <exec executable="npm">
             <arg value="run" />
-            <arg value="doc-build" />
+            <arg value="doc-build-en" />
+        </exec>
+    </target>
+
+    <target name="doc" description="Build documentation mini site.">
+        <exec executable="npm">
+            <arg value="run" />
+            <arg value="doc-build-fr" />
         </exec>
     </target>
 

@@ -6,11 +6,11 @@ excludeDir:
 # List of relative file/directory paths to copy and mirror in the generated documentation
 # ALL LINK MUST BE RELATIVE TO THE doc/ FOLDER
 assets:
-  - ./doc/src/assets/
+  - ./doc/assets/
 
 # Default values for 202 sidebar theming
 theme:
-  logo: ./doc/src/assets/logo.png
+  logo: ./doc/assets/logo.png
   css:
   sidebar:
     background: "#33363b"
@@ -18,8 +18,8 @@ theme:
 
 order:
   - Introduction
-  - Webservices produits
-  - Webservices commandes
+  - Webservices products
+  - Webservices Orders
   - Wrappers
   - Webhooks
   - Support
