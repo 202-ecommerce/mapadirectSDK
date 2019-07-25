@@ -17,10 +17,10 @@
         depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb" />
 
     <target name="build-doc"
-        depends="build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm-install,doc" />
+        depends="build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm-install,doc-fr,doc-en" />
 
     <target name="build-doc-clean"
-        depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm,doc" />
+        depends="clean,build-common,pdepend,phpcs-ci,phpcpd,phpcb,npm,doc-fr,doc-en" />
 
     <target name="build-parallel"
         depends="build-common,tools-parallel" />
@@ -28,7 +28,7 @@
     <target name="build-parallel-clean"
         depends="clean,build-common,tools-parallel" />
 
-    <target name="build-common" depends="lint,prepare,composer,phpunit,npm,doc" />
+    <target name="build-common" depends="lint,prepare,composer,phpunit,npm,doc-en,doc-fr" />
 
     <target name="tools-parallel" description="Run tools in parallel">
         <parallel threadCount="2">
@@ -48,8 +48,7 @@
         <delete dir="${build-dir}/api" />
         <delete dir="${build-dir}/code-browser" />
         <delete dir="${build-dir}/coverage" />
-        <delete dir="${build-dir}/doc_fr/" />
-        <delete dir="${build-dir}/doc_en/" />
+        <delete dir="${build-dir}/doc" />
         <delete dir="${build-dir}/logs" />
         <delete dir="${build-dir}/pdepend" />
     </target>
@@ -157,8 +156,7 @@
         <mkdir dir="${build-dir}/coverage" />
         <mkdir dir="${build-dir}/logs" />
         <mkdir dir="${build-dir}/pdepend" />
-        <mkdir dir="${build-dir}/doc_fr" />
-        <mkdir dir="${build-dir}/doc_en" />
+        <mkdir dir="${build-dir}/doc" />
     </target>
 
     <target name="npm" depends="clean-npm,npm-install" description="Install or update node dependencies" />
@@ -173,14 +171,14 @@
         </exec>
     </target>
 
-    <target name="doc" description="Build documentation mini site.">
+    <target name="doc-en" description="Build documentation mini site.">
         <exec executable="npm">
             <arg value="run" />
             <arg value="doc-build-en" />
         </exec>
     </target>
 
-    <target name="doc" description="Build documentation mini site.">
+    <target name="doc-fr" description="Build documentation mini site.">
         <exec executable="npm">
             <arg value="run" />
             <arg value="doc-build-fr" />
