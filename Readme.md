@@ -13,8 +13,7 @@ La librairie permert de synchroniser son catalogue de produits et recevoir les c
 
 ## Documentation
 
-Vous trouverez ici la [documentation de la librairie MapaDirectSDK](https://docs.202-ecommerce.com/mapadirectsdk/).
-
+Vous trouverez ici la [documentation de la librairie MapaDirectSDK](https://docs.202-ecommerce.com/mapadirectsdk/fr/). [(Version EN)](https://docs.202-ecommerce.com/mapadirectsdk/en/)
 
 ## Installer mapadirectsdk
 
@@ -48,7 +47,8 @@ composer.phar update
 
 | Version | Status     | Packagist           | Namespace    | Repo                | Doc                | PSR-7 | PHP Version |
 |---------|------------|---------------------|--------------|---------------------|---------------------|-------|-------------|
-| dev-master     | EOL        | `mapadirectsdk/mapadirectsdk`     | `MapaDirectSDK`     | [master][mapadirectsdk-1-repo] | [master][mapadirectsdk-1-doc] | No    | >= 5.6    |
+| dev-master     | EOL        | `mapadirectsdk/mapadirectsdk`     | `MapaDirectSDK`     | [master][mapadirectsdk-1-repo] | [EN][mapadirectsdk-1-doc-en]/[FR][mapadirectsdk-1-doc-fr] | No    | >= 5.6    |
 
 [mapadirectsdk-1-repo]: https://github.com/202-ecommerce/mapadirectSDK
-[mapadirectsdk-1-doc]: https://docs.202-ecommerce.com/mapadirectsdk/
+[mapadirectsdk-1-doc-fr]: https://docs.202-ecommerce.com/mapadirectsdk/fr/
+[mapadirectsdk-1-doc-en]: https://docs.202-ecommerce.com/mapadirectsdk/en/

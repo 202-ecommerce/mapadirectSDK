@@ -19,7 +19,7 @@ from the marketplace.
 
 ## Documentation
 
-You will find here the [documentation of the MapaDirectSDK library](https://docs.202-ecommerce.com/mapadirectsdk/).
+You will find here the [documentation of the MapaDirectSDK library](https://docs.202-ecommerce.com/mapadirectsdk/en/). [(Version FR)](https://docs.202-ecommerce.com/mapadirectsdk/fr/)
 
 ## Install mapadirectsdk
 
