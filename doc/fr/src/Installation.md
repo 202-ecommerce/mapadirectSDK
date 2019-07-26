@@ -18,7 +18,7 @@ La librairie permert de synchroniser son catalogue de produits et recevoir les c
 
 ## Documentation
 
-Vous trouverez ici la [documentation de la librairie MapaDirectSDK](https://docs.202-ecommerce.com/mapadirectsdk/).
+Vous trouverez ici la [documentation de la librairie MapaDirectSDK](https://docs.202-ecommerce.com/mapadirectsdk/fr/). [(Version EN)](https://docs.202-ecommerce.com/mapadirectsdk/en/)
 
 
 ## Installer mapadirectsdk
