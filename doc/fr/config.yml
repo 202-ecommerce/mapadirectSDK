@@ -18,8 +18,8 @@ theme:
 
 order:
   - Introduction
-  - Webservices products
-  - Webservices Orders
+  - Webservices produits
+  - Webservices commandes
   - Wrappers
   - Webhooks
   - Support
