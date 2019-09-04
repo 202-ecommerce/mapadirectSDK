@@ -49,6 +49,7 @@ Request's body (example) :
     "timestamp": 1532092031,
     "status": "EMITTED",
     "siretNumber": "19781123300010",
+    "serviceCode": "",
     "paymentMethod": "",
     "shippingAddress": {
         "company": "LYCEE DE VILLAROY",
