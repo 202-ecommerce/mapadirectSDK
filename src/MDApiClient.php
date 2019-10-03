@@ -33,7 +33,7 @@ use MapaDirectSDK\Logger\MDApiLogger;
  */
 class MDApiClient
 {
-    const DEFAULT_URL = 'https://sandbox.mapadirect.fr/marketplace/connectors';
+    const DEFAULT_URL = 'https://sandbox.mapadirect.fr/marketplace/connectors/v1';
 
     const WRAPPER = array(
         'Auth'               => MDApiWrapperAuth::class,
